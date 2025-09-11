@@ -10,38 +10,31 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
+import { useLoginMutation } from "@/redux/features/auth/auth.api";
 import { useForm, type FieldValues, type SubmitHandler } from "react-hook-form";
-// import { useLoginMutation } from "@/redux/features/auth/auth.api";
 
-// import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-import { Link, } from "react-router";
-// import { toast } from "sonner";
+import { Link, useNavigate, } from "react-router";
 
 export function Login({
   className,
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) {
-//   const navigate = useNavigate();
+  const navigate = useNavigate();
   const form = useForm();
-//   const [login] = useLoginMutation();
+  const [login] = useLoginMutation();
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    console.log(data)
-    // try {
-    //   const res = await login(data).unwrap();
-    //   navigate("/")
-    //   console.log(res);
-    // } catch (err) {
-    //   console.error(err);
+    try {
+      const res = await login(data).unwrap();
+      navigate("/")
+      console.log(res);
+    } catch (err) {
+      console.error(err);
 
-    //   if (err.data.message === "Password does not match") {
-    //     toast.error("Invalid credentials");
-    //   }
+      // if (err.data.message === "Password does not match") {
+      //   toast.error("Invalid credentials");
+      // }
 
-    //   if (err.status === 401) {
-    //     toast.error("Your account is not verified");
-    //     navigate("/verify", { state: data.email });
-    //   }
-    // }
+    }
   };
 
   return (
