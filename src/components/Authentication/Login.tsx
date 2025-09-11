@@ -48,7 +48,7 @@ export function Login({
     <div className={cn("min-h-screen flex flex-col justify-center items-center gap-6 p-6", className)} {...props}>
       <div className="flex flex-col items-center gap-2 text-center">
         <Logo/>
-        <h1 className="text-2xl font-bold">Login to your account</h1>
+        <h1 className="text-2xl font-bold">Login to your zPay account</h1>
       </div>
       <div className="grid gap-6 w-96">
         <Form {...form}>
