@@ -1,16 +1,15 @@
-
-import './App.css'
-import { Button } from './components/ui/button'
+import { Outlet } from "react-router";
+import "./App.css";
+import CommonLayout from "./components/Layouts/CommonLayout";
 
 function App() {
-
-
   return (
-   <div>
-    <h1>hello i am ready to go</h1>
-    <Button>Done</Button>
-   </div>
-  )
+    <div>
+      <CommonLayout>
+        <Outlet />
+      </CommonLayout>
+    </div>
+  );
 }
 
-export default App
+export default App;
