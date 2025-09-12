@@ -27,19 +27,6 @@ export function Login({
       const res = await login(data).unwrap();
         navigate("/")
         console.log(res)
-      
-
-      // const role = res?.userWithoutPassword.role;
-
-      // if (role === "ADMIN") {
-      //   navigate("/admin/adminAnalytics");
-      // } else if (role === "AGENT") {
-      //   navigate("/agent/AgentAnalytics");
-      // } else if (role === "USER") {
-      //   navigate("/user/UserAnalytics");
-      // } else {
-      //   ;
-      // }
     } catch (err) {
       console.error(err);
     }
