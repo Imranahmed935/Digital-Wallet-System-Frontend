@@ -13,7 +13,7 @@ import { cn } from "@/lib/utils";
 import { useLoginMutation } from "@/redux/features/auth/auth.api";
 import { useForm, type FieldValues, type SubmitHandler } from "react-hook-form";
 
-import { Link, useNavigate, } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 export function Login({
   className,
@@ -25,22 +25,33 @@ export function Login({
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     try {
       const res = await login(data).unwrap();
-      navigate("/")
-      console.log(res);
+
+      const role = res?.userWithoutPassword.role;
+
+      if (role === "ADMIN") {
+        navigate("/admin/adminAnalytics");
+      } else if (role === "AGENT") {
+        navigate("/agent/AgentAnalytics");
+      } else if (role === "USER") {
+        navigate("/user/UserAnalytics");
+      } else {
+        navigate("/");
+      }
     } catch (err) {
       console.error(err);
-
-      // if (err.data.message === "Password does not match") {
-      //   toast.error("Invalid credentials");
-      // }
-
     }
   };
 
   return (
-    <div className={cn("min-h-screen flex flex-col justify-center items-center gap-6 p-6", className)} {...props}>
+    <div
+      className={cn(
+        "min-h-screen flex flex-col justify-center items-center gap-6 p-6",
+        className
+      )}
+      {...props}
+    >
       <div className="flex flex-col items-center gap-2 text-center">
-        <Logo/>
+        <Logo />
         <h1 className="text-2xl font-bold">Login to your zPay account</h1>
       </div>
       <div className="grid gap-6 w-96">
