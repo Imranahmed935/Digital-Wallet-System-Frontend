@@ -5,11 +5,13 @@ import { ArrowDownCircle, ArrowUpCircle, Wallet } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Logo from "@/assets/icon/Logo";
 import { Modal } from "@/components/Modal";
-import { useAllWalletQuery } from "@/redux/features/user/user.api";
+import { useAllWalletQuery} from "@/redux/features/user/user.api";
+import { WithdrawModal } from "@/components/WithdrawModal";
 
 const UserAnalytics = () => {
   const [showBalance, setShowBalance] = useState(false);
   const { data, isLoading, error } = useAllWalletQuery(undefined);
+  
 
 
   const walletBalance = data?.balance || 0;
@@ -84,7 +86,9 @@ const UserAnalytics = () => {
         <Card className="bg-violet-100 rounded-2xl shadow-sm">
           <CardContent className="flex flex-col items-center justify-center py-6">
             <ArrowDownCircle className="w-12 h-12 text-violet-500" />
-            <span className="mt-3 text-base font-medium">Withdraw Money</span>
+            <span className="mt-3 text-base font-medium">
+              <WithdrawModal/>
+            </span>
           </CardContent>
         </Card>
 

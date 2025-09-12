@@ -17,6 +17,15 @@ export const userApi = baseApi.injectEndpoints({
       }),
       providesTags: ["Wallet"],
     }),
+    withdraw:builder.mutation({
+        query:(info)=>({
+            url:"/withdraw",
+            method:"POST",
+            data:info
+        }),
+        invalidatesTags: ["Wallet"],
+    })
   }),
+  
 });
-export const { useAddMoneyMutation, useAllWalletQuery } = userApi;
+export const { useAddMoneyMutation, useAllWalletQuery, useWithdrawMutation } = userApi;
