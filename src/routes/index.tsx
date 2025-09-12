@@ -4,15 +4,21 @@ import { Register } from "@/components/Authentication/Register";
 import DashboardLayout from "@/components/Layouts/DashboardLayout";
 
 import About from "@/pages/About/About";
-import AdminAnalytics from "@/pages/Admin/AdminAnalytics";
-import AgentAnalytics from "@/pages/Agent/AgentAnalytics";
 import Contact from "@/pages/Contact/Contact";
 import Faq from "@/pages/FAQ/Faq";
 import Feature from "@/pages/Features/Feature";
 import HomePage from "@/pages/Home/HomePage";
 import Pricing from "@/pages/Pricing/Pricing";
-import UserAnalytics from "@/pages/User/UserAnalytics";
-import { createBrowserRouter } from "react-router";
+
+import type { TRole } from "@/types";
+import { generateRoutes } from "@/utils/generateRoutes";
+import { withAuth } from "@/utils/withAuth";
+import { createBrowserRouter, Navigate } from "react-router";
+import { AdminSidebarItems } from "./AdminSideBar";
+import { UserSidebarItems } from "./UserSideBar";
+import { AgentSidebarItems } from "./AgentSideBar";
+import { role } from "@/constant/Role";
+
 
 export const router = createBrowserRouter([
   {
@@ -45,37 +51,31 @@ export const router = createBrowserRouter([
       },
     ],
   },
+  {
+  Component: withAuth(DashboardLayout, role.user as TRole),
+  path: "/user",
+  children: [
+    { index: true, element: <Navigate to="analytics" /> }, 
+    ...generateRoutes(UserSidebarItems),
+  ],
+},
+{
+  Component: withAuth(DashboardLayout, role.agent as TRole),
+  path: "/agent",
+  children: [
+    { index: true, element: <Navigate to="analytics" /> }, 
+    ...generateRoutes(AgentSidebarItems),
+  ],
+},
+{
+  Component: withAuth(DashboardLayout, role.admin as TRole),
+  path: "/admin",
+  children: [
+    { index: true, element: <Navigate to="analytics" /> }, 
+    ...generateRoutes(AdminSidebarItems),
+  ],
+},
 
-  {
-    Component: DashboardLayout,
-    path: "/admin",
-    children:[
-      {
-        Component:AdminAnalytics,
-        path:"adminAnalytics"
-      }
-    ]
-  },
-  {
-    Component: DashboardLayout,
-    path: "/agent",
-    children:[
-      {
-        Component:AgentAnalytics,
-        path:"AgentAnalytics"
-      }
-    ]
-  },
-  {
-    Component: DashboardLayout,
-    path: "/user",
-    children:[
-      {
-        Component:UserAnalytics,
-        path:"UserAnalytics"
-      }
-    ]
-  },
   {
     Component: Login,
     path: "Login",

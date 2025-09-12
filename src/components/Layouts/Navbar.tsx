@@ -1,40 +1,53 @@
-import Logo from "@/assets/icon/Logo"
-import { Button } from "@/components/ui/button"
+import Logo from "@/assets/icon/Logo";
+import { Button } from "@/components/ui/button";
 import {
   NavigationMenu,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
-} from "@/components/ui/navigation-menu"
+} from "@/components/ui/navigation-menu";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover"
-import { authApi, useLogoutMutation, useUserInfoQuery } from "@/redux/features/auth/auth.api"
-import { useDispatch } from "react-redux"
-import { Link } from "react-router-dom"
+} from "@/components/ui/popover";
+import { role } from "@/constant/Role";
 
-// Navigation links array
+import {
+  authApi,
+  useLogoutMutation,
+  useUserInfoQuery,
+} from "@/redux/features/auth/auth.api";
+import { useDispatch } from "react-redux";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+
 const navigationLinks = [
-  { href: "/", label: "Home", active: true },
-  { href: "/feature", label: "Features" },
-  { href: "/Pricing", label: "Pricing" },
-  { href: "/About", label: "About" },
-  { href: "/Contact", label: "Contact" },
-  { href: "/Faq", label: "FAQ" },
-]
+  { href: "/", label: "Home", role: "PUBLIC" },
+  { href: "/admin", label: "Dashboard", role: role.admin },
+  { href: "/agent", label: "Dashboard", role: role.agent },
+  { href: "/user", label: "Dashboard", role: role.user },
+  { href: "/feature", label: "Features", role: "PUBLIC" },
+  { href: "/pricing", label: "Pricing", role: "PUBLIC" },
+  { href: "/about", label: "About", role: "PUBLIC" },
+  { href: "/contact", label: "Contact", role: "PUBLIC" },
+  { href: "/faq", label: "FAQ", role: "PUBLIC" },
+];
 
 export default function Navbar() {
-  const { data } = useUserInfoQuery(undefined)
-  const [logout] = useLogoutMutation()
-  const dispatch = useDispatch()
+  const { data } = useUserInfoQuery(undefined);
+  const [logout] = useLogoutMutation();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleLogout = async () => {
-    await logout(undefined)
-    dispatch(authApi.util.resetApiState()) // ✅ correct usage
-  
-  }
+    await logout(undefined);
+    dispatch(authApi.util.resetApiState());
+    navigate("/login");
+  };
+
+  const filteredLinks = navigationLinks.filter(
+    (link) => link.role === "PUBLIC" || (data?.role && link.role === data.role)
+  );
 
   return (
     <header className="border-b px-4 md:px-6">
@@ -63,7 +76,7 @@ export default function Navbar() {
                 >
                   <path
                     d="M4 12L20 12"
-                    className="origin-center -translate-y-[7px] transition-all duration-300 ease-[cubic-bezier(.5,.85,.25,1.1)] group-aria-expanded:translate-x-0 group-aria-expanded:translate-y-0 group-aria-expanded:rotate-[315deg]"
+                    className="origin-center -translate-y-[7px] transition-all duration-300 ease-[cubic-bezier(.5,.85,.25,1.1)] group-aria-expanded:translate-y-0 group-aria-expanded:rotate-[315deg]"
                   />
                   <path
                     d="M4 12H20"
@@ -79,10 +92,19 @@ export default function Navbar() {
             <PopoverContent align="start" className="w-36 p-1 md:hidden">
               <NavigationMenu className="max-w-none *:w-full">
                 <NavigationMenuList className="flex-col items-start gap-0 md:gap-2">
-                  {navigationLinks.map((link, index) => (
+                  {filteredLinks.map((link, index) => (
                     <NavigationMenuItem key={index} className="w-full">
-                      <NavigationMenuLink asChild className="py-1.5">
-                        <Link to={link.href}>{link.label}</Link>
+                      <NavigationMenuLink asChild className="py-1.5 w-full">
+                        <NavLink
+                          to={link.href}
+                          className={({ isActive }) =>
+                            `block w-full ${
+                              isActive ? "text-primary font-semibold" : ""
+                            }`
+                          }
+                        >
+                          {link.label}
+                        </NavLink>
                       </NavigationMenuLink>
                     </NavigationMenuItem>
                   ))}
@@ -91,25 +113,33 @@ export default function Navbar() {
             </PopoverContent>
           </Popover>
 
-          {/* Logo + Nav */}
+          {/* Logo + Desktop Nav */}
           <div className="flex items-center gap-6">
-            <div className="flex gap-2">
+            <div className="flex gap-2 items-center">
               <Link to="/" className="text-primary hover:text-primary/90">
                 <Logo />
               </Link>
-              <h1 className="text-2xl">zPAY</h1>
+              <h1 className="text-2xl font-bold">zPAY</h1>
             </div>
 
             {/* Desktop navigation menu */}
             <NavigationMenu className="max-md:hidden">
-              <NavigationMenuList className="gap-2">
-                {navigationLinks.map((link, index) => (
+              <NavigationMenuList className="gap-4">
+                {filteredLinks.map((link, index) => (
                   <NavigationMenuItem key={index}>
-                    <NavigationMenuLink
-                      active={link.active}
-                      className="text-muted-foreground hover:text-primary py-1.5 font-medium"
-                    >
-                      <Link to={link.href}>{link.label}</Link>
+                    <NavigationMenuLink asChild>
+                      <NavLink
+                        to={link.href}
+                        className={({ isActive }) =>
+                          `py-1.5 font-medium transition-colors hover:text-primary ${
+                            isActive
+                              ? "text-primary font-semibold"
+                              : "text-muted-foreground"
+                          }`
+                        }
+                      >
+                        {link.label}
+                      </NavLink>
                     </NavigationMenuLink>
                   </NavigationMenuItem>
                 ))}
@@ -136,5 +166,5 @@ export default function Navbar() {
         </div>
       </div>
     </header>
-  )
+  );
 }

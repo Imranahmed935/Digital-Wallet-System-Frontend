@@ -4,6 +4,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { ArrowDownCircle, ArrowUpCircle, Wallet } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Logo from "@/assets/icon/Logo";
+import { Modal } from "@/components/Modal";
+
 
 const UserAnalytics = () => {
   const [showBalance, setShowBalance] = useState(false);
@@ -84,7 +86,7 @@ const UserAnalytics = () => {
     <CardContent className="flex flex-col items-center justify-center py-2 sm:py-5 md:py-8">
       <ArrowDownCircle className="w-5 h-5 sm:w-8 sm:h-10 md:w-12 md:h-12 text-pink-500" />
       <span className="mt-1 sm:mt-2 md:mt-3 text-xs sm:text-sm md:text-base font-medium">
-        Add Money
+        <Modal/>
       </span>
     </CardContent>
   </Card>

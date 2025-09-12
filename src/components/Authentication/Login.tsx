@@ -25,18 +25,21 @@ export function Login({
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     try {
       const res = await login(data).unwrap();
+        navigate("/")
+        console.log(res)
+      
 
-      const role = res?.userWithoutPassword.role;
+      // const role = res?.userWithoutPassword.role;
 
-      if (role === "ADMIN") {
-        navigate("/admin/adminAnalytics");
-      } else if (role === "AGENT") {
-        navigate("/agent/AgentAnalytics");
-      } else if (role === "USER") {
-        navigate("/user/UserAnalytics");
-      } else {
-        navigate("/");
-      }
+      // if (role === "ADMIN") {
+      //   navigate("/admin/adminAnalytics");
+      // } else if (role === "AGENT") {
+      //   navigate("/agent/AgentAnalytics");
+      // } else if (role === "USER") {
+      //   navigate("/user/UserAnalytics");
+      // } else {
+      //   ;
+      // }
     } catch (err) {
       console.error(err);
     }
