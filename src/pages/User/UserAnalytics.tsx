@@ -7,12 +7,14 @@ import Logo from "@/assets/icon/Logo";
 import { Modal } from "@/components/Modal";
 import { useAllWalletQuery} from "@/redux/features/user/user.api";
 import { WithdrawModal } from "@/components/WithdrawModal";
+import { SendModal } from "@/components/SendModal";
+import { useUserInfoQuery } from "@/redux/features/auth/auth.api";
 
 const UserAnalytics = () => {
   const [showBalance, setShowBalance] = useState(false);
   const { data, isLoading, error } = useAllWalletQuery(undefined);
-  
-
+  const {data:userData} = useUserInfoQuery(undefined);
+    
 
   const walletBalance = data?.balance || 0;
 
@@ -37,7 +39,7 @@ const UserAnalytics = () => {
               <AvatarFallback>U</AvatarFallback>
             </Avatar>
             <div className="flex flex-col items-start min-w-0">
-              <p className="text-base truncate">Account: 01734890714</p>
+              <p className="text-base truncate">Account: {userData.phone}</p>
               <div
                 onClick={() => setShowBalance(!showBalance)}
                 className="mt-1 cursor-pointer relative w-44 h-9 overflow-hidden bg-white rounded-full flex items-center shadow-sm flex-shrink-0"
@@ -104,7 +106,9 @@ const UserAnalytics = () => {
         <Card className="bg-violet-100 rounded-2xl shadow-sm">
           <CardContent className="flex flex-col items-center justify-center py-6">
             <Wallet className="w-12 h-12 text-violet-500" />
-            <span className="mt-3 text-base font-medium">Send Money</span>
+            <span className="mt-3 text-base font-medium">
+              <SendModal/>
+            </span>
           </CardContent>
         </Card>
       </div>

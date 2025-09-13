@@ -1,11 +1,12 @@
 import { baseApi } from "@/redux/baseApi";
 
+
 export const userApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     addMoney: builder.mutation({
       query: (Info) => ({
         url: "/add",
-        method:"POST",
+        method: "POST",
         data: Info,
       }),
       invalidatesTags: ["Wallet"],
@@ -17,15 +18,37 @@ export const userApi = baseApi.injectEndpoints({
       }),
       providesTags: ["Wallet"],
     }),
-    withdraw:builder.mutation({
-        query:(info)=>({
-            url:"/withdraw",
-            method:"POST",
-            data:info
-        }),
-        invalidatesTags: ["Wallet"],
-    })
+    transaction: builder.query({
+  query: (page = 1) => ({
+    url: `/transactions/me?page=${page}`,
+    method: "GET",
   }),
-  
+  providesTags: ["transactions"],
+}),
+
+
+    withdraw: builder.mutation({
+      query: (info) => ({
+        url: "/withdraw",
+        method: "POST",
+        data: info,
+      }),
+      invalidatesTags: ["Wallet"],
+    }),
+    send: builder.mutation({
+      query: (info) => ({
+        url: "/send",
+        method: "POST",
+        data: info,
+      }),
+      invalidatesTags: ["Wallet"],
+    }),
+  }),
 });
-export const { useAddMoneyMutation, useAllWalletQuery, useWithdrawMutation } = userApi;
+export const {
+  useAddMoneyMutation,
+  useTransactionQuery,
+  useSendMutation,
+  useAllWalletQuery,
+  useWithdrawMutation,
+} = userApi;

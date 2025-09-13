@@ -11,41 +11,37 @@ import {
 import { Input } from "@/components/ui/input";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "./ui/form";
 import { useForm, type FieldValues, type SubmitHandler } from "react-hook-form";
-import { useAddMoneyMutation } from "@/redux/features/user/user.api";
+import { useSendMutation } from "@/redux/features/user/user.api";
 import { toast } from "sonner";
 
-
-export function Modal() {
-  const [addMoney] = useAddMoneyMutation();
-  
+export function SendModal() {
+  const [send] = useSendMutation()
   const form = useForm();
-
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     try {
       const payload = {
-        phone: data.phone,
+        receiverPhone: data.phone,
         amount: Number(data.amount),
       };
-       await addMoney(payload).unwrap();
-       toast.success("Money Added Successfully!")
+       await send(payload).unwrap();
+       toast.success("Money send Successfully!")
      
       form.reset();
     } catch (error) {
       console.error(error);
-      alert("Failed to add money");
+      toast.error("Failed to send money");
     }
   };
-
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline">Add Money</Button>
+        <Button variant="outline">Send Money</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Add Money</DialogTitle>
+          <DialogTitle>Send Money</DialogTitle>
           <DialogDescription>
-            Enter user phone number and amount to add money.
+            Enter Receiver number and amount to Send money.
           </DialogDescription>
         </DialogHeader>
 
@@ -84,7 +80,7 @@ export function Modal() {
               <DialogClose asChild>
                 <Button variant="outline">Cancel</Button>
               </DialogClose>
-              <Button type="submit">Add</Button>
+              <Button type="submit">Send</Button>
             </div>
           </form>
         </Form>
