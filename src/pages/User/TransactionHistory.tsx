@@ -1,16 +1,33 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useTransactionQuery } from "@/redux/features/user/user.api";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
+import { useState } from "react";
 
 const TransactionHistory = () => {
-  const { data, isLoading, error } = useTransactionQuery(undefined);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [limit] = useState(10);
+
+  const { data, isLoading, error } = useTransactionQuery({
+    page: currentPage,
+    limit,
+  });
+
+  // extract correctly
+  const transactions = data || [];
+  const totalPages = data?.meta?.pages;
 
   if (isLoading)
     return <p className="text-center mt-10 text-gray-500">Loading...</p>;
   if (error)
     return (
-      <p className="text-center mt-10 text-red-500">
-        Something went wrong!
-      </p>
+      <p className="text-center mt-10 text-red-500">Something went wrong!</p>
     );
 
   return (
@@ -19,12 +36,12 @@ const TransactionHistory = () => {
         Transaction History
       </h1>
 
-      {data?.length === 0 && (
+      {transactions.length === 0 && (
         <p className="text-center text-gray-500">No transactions found</p>
       )}
 
       <div className="grid gap-4">
-        {data?.map((txn: any) => (
+        {transactions.map((txn: any) => (
           <div
             key={txn._id}
             className="bg-white shadow-md rounded-lg p-4 flex justify-between items-center hover:shadow-lg transition-shadow"
@@ -55,6 +72,44 @@ const TransactionHistory = () => {
           </div>
         ))}
       </div>
+
+      {/* Pagination */}
+      {totalPages > 1 && (
+        <div className="mt-6">
+          <Pagination>
+            <PaginationContent>
+              <PaginationItem>
+                <PaginationPrevious
+                  onClick={() =>
+                    setCurrentPage((prev) => Math.max(prev - 1, 1))
+                  }
+                />
+              </PaginationItem>
+
+              {Array.from({ length: totalPages }, (_, index) => index + 1).map(
+                (page) => (
+                  <PaginationItem key={page}>
+                    <PaginationLink
+                      isActive={currentPage === page}
+                      onClick={() => setCurrentPage(page)}
+                    >
+                      {page}
+                    </PaginationLink>
+                  </PaginationItem>
+                )
+              )}
+
+              <PaginationItem>
+                <PaginationNext
+                  onClick={() =>
+                    setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+                  }
+                />
+              </PaginationItem>
+            </PaginationContent>
+          </Pagination>
+        </div>
+      )}
     </div>
   );
 };

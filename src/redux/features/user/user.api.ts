@@ -1,6 +1,5 @@
 import { baseApi } from "@/redux/baseApi";
 
-
 export const userApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     addMoney: builder.mutation({
@@ -19,13 +18,12 @@ export const userApi = baseApi.injectEndpoints({
       providesTags: ["Wallet"],
     }),
     transaction: builder.query({
-  query: (page = 1) => ({
-    url: `/transactions/me?page=${page}`,
-    method: "GET",
-  }),
-  providesTags: ["transactions"],
-}),
-
+      query: ({ page = 1, limit = 10 }) => ({
+        url: `/transactions/me?page=${page}&limit=${limit}`,
+        method: "GET",
+      }),
+      providesTags: ["transactions"],
+    }),
 
     withdraw: builder.mutation({
       query: (info) => ({
