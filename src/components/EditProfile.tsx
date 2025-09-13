@@ -1,5 +1,5 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { useState } from "react";
+
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -13,22 +13,33 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useUserInfoQuery } from "@/redux/features/auth/auth.api";
 
-export default function EditProfile({ user, onSave }: any) {
-  const [name, setName] = useState(user?.name || "");
-  const [email, setEmail] = useState(user?.email || "");
-  const [phone, setPhone] = useState(user?.phone || "");
-  const [avatar, setAvatar] = useState(user?.avatar || "");
+export default function EditProfile() {
+  const { data } = useUserInfoQuery(undefined);
+
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+
+ 
+  useEffect(() => {
+    if (data) {
+      setName(data.name || "");
+      setEmail(data.email || "");
+      setPhone(data.phone || "");
+    }
+  }, [data]);
 
   const handleSave = () => {
-    const updatedProfile = { name, email, phone, avatar };
-    onSave(updatedProfile); // send updated data to parent or API
+    const updatedProfile = { name, email, phone };
+    console.log(updatedProfile); 
   };
 
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline">Edit</Button>
+        <Button variant="outline">Edit Profile</Button>
       </DialogTrigger>
 
       <DialogContent className="flex flex-col gap-4 sm:max-w-lg p-6">
@@ -71,16 +82,6 @@ export default function EditProfile({ user, onSave }: any) {
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               placeholder="Enter your phone"
-            />
-          </div>
-
-          <div>
-            <Label htmlFor="avatar">Avatar URL</Label>
-            <Input
-              id="avatar"
-              value={avatar}
-              onChange={(e) => setAvatar(e.target.value)}
-              placeholder="Enter avatar URL"
             />
           </div>
         </div>
