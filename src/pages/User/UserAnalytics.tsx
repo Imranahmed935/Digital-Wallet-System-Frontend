@@ -3,7 +3,6 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowDownCircle, ArrowUpCircle, Wallet } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import Logo from "@/assets/icon/Logo";
 import { Modal } from "@/components/Modal";
 import { useAllWalletQuery} from "@/redux/features/user/user.api";
 import { WithdrawModal } from "@/components/WithdrawModal";
@@ -72,14 +71,6 @@ const UserAnalytics = () => {
                 </AnimatePresence>
               </div>
             </div>
-          </div>
-
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2 cursor-pointer py-2 rounded-lg flex-shrink-0 text-violet-800">
-              <Wallet className="w-6 h-6 text-violet-600" />
-              <span className="font-medium">Transaction</span>
-            </div>
-            <Logo />
           </div>
         </CardContent>
       </Card>

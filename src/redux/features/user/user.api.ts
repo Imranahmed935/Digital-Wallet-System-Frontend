@@ -41,6 +41,14 @@ export const userApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["Wallet"],
     }),
+    updateProfile: builder.mutation({
+      query: (profile) => ({
+        url: "/profile",
+        method: "PATCH",
+        data: profile,
+      }),
+      invalidatesTags: ["UserInfo"], 
+    }),
   }),
 });
 export const {
@@ -49,4 +57,5 @@ export const {
   useSendMutation,
   useAllWalletQuery,
   useWithdrawMutation,
+  useUpdateProfileMutation
 } = userApi;
