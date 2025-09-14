@@ -16,13 +16,6 @@ export const adminApi = baseApi.injectEndpoints({
       }),
       providesTags: ["allAgents"],
     }),
-    // allTransactions: builder.query({
-    //   query: () => ({
-    //     url: "/transactions",
-    //     method: "GET",
-    //   }),
-    //   providesTags: ["transactions"],
-    // }),
     allTransactions: builder.query({
       query: (params) => ({
         url: "/transactions",

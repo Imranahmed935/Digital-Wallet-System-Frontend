@@ -138,12 +138,12 @@ const Transactions = () => {
             <tbody>
               {transactions.map((tx: any) => (
                 <tr key={tx._id} className="border-b hover:bg-gray-50">
-                  <td className="p-2 whitespace-nowrap">
+                  <td className="p-2 text-left whitespace-nowrap">
                     {new Date(tx.createdAt).toLocaleString()}
                   </td>
-                  <td className="p-2">{tx.type}</td>
+                  <td className="p-2 text-left">{tx.type}</td>
                   <td
-                    className={`p-2 font-medium ${
+                    className={`p-2 text-left font-medium ${
                       tx.status === "COMPLETED"
                         ? "text-green-600"
                         : tx.status === "FAILED"
@@ -153,7 +153,7 @@ const Transactions = () => {
                   >
                     {tx.status}
                   </td>
-                  <td className="p-2 whitespace-nowrap">৳{tx.amount}</td>
+                  <td className="p-2 text-left whitespace-nowrap">৳{tx.amount}</td>
                 </tr>
               ))}
             </tbody>

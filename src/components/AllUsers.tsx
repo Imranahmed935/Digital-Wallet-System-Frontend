@@ -38,7 +38,7 @@ export default function AllUsers() {
         </TableHeader>
 
         <TableBody>
-          {users?.map((user: {
+          {users?.data.map((user: {
             _id: string;
             name: string;
             email: string;
