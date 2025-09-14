@@ -25,8 +25,8 @@ const UserProfile = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-6">
-      <Card className="w-full max-w-3xl rounded-xl overflow-hidden">
+    <div className="min-h-screen bg-gray-50 p-6">
+      <Card className="w-full max-w-3xl rounded overflow-hidden">
         {/* Banner with Edit button */}
         <div className="bg-gradient-to-r from-blue-600 to-indigo-600 h-32 relative">
           <div className="absolute top-4 right-4">

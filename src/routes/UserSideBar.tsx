@@ -1,3 +1,4 @@
+
 import TransactionHistory from "@/pages/User/TransactionHistory";
 import UserAnalytics from "@/pages/User/UserAnalytics";
 import UserProfile from "@/pages/User/UserProfile";
@@ -7,7 +8,7 @@ import type { ISidebarItem } from "@/types";
 
 export const UserSidebarItems: ISidebarItem[] = [
   {
-    title: "Dashboard",
+    title: "Analytics",
     items: [
       {
         title: "Analytics",
@@ -36,5 +37,6 @@ export const UserSidebarItems: ISidebarItem[] = [
       },
     ],
   },
+ 
 ];
 

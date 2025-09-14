@@ -38,7 +38,7 @@ const UserAnalytics = () => {
               <AvatarFallback>U</AvatarFallback>
             </Avatar>
             <div className="flex flex-col items-start min-w-0">
-              <p className="text-base truncate">Account: {userData.phone}</p>
+              <p className="text-base truncate">Account: {userData?.phone}</p>
               <div
                 onClick={() => setShowBalance(!showBalance)}
                 className="mt-1 cursor-pointer relative w-44 h-9 overflow-hidden bg-white rounded-full flex items-center shadow-sm flex-shrink-0"

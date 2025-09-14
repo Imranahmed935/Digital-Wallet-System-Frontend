@@ -1,11 +1,9 @@
-
+import AllUsers from "@/components/AllUsers";
 
 const ManageUsers = () => {
-    return (
-        <div>
-            this is user page
-        </div>
-    );
+  return <div>
+    <AllUsers/>
+  </div>;
 };
 
 export default ManageUsers;

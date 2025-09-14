@@ -1,5 +1,5 @@
 
-import { role } from "@/constant/Role";
+import { role } from "@/constant/role";
 import { AdminSidebarItems } from "@/routes/AdminSideBar";
 import { AgentSidebarItems } from "@/routes/AgentSideBar";
 import { UserSidebarItems } from "@/routes/UserSideBar";
