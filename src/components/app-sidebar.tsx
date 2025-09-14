@@ -17,7 +17,7 @@ import { getSidebarItems } from "@/utils/getSideBarItems";
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const { data: userData } = useUserInfoQuery(undefined);
-  const navItems = getSidebarItems(userData?.role);
+  const navItems = getSidebarItems(userData?.data?.role);
 
   return (
     <Sidebar {...props}>

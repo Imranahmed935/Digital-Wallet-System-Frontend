@@ -16,7 +16,21 @@ export const adminApi = baseApi.injectEndpoints({
       }),
       providesTags: ["allAgents"],
     }),
-
+    // allTransactions: builder.query({
+    //   query: () => ({
+    //     url: "/transactions",
+    //     method: "GET",
+    //   }),
+    //   providesTags: ["transactions"],
+    // }),
+    allTransactions: builder.query({
+      query: (params) => ({
+        url: "/transactions",
+        method: "GET",
+        params,
+      }),
+      providesTags: ["transactions"],
+    }),
     updateUserStatus: builder.mutation({
       query: ({ id }) => ({
         url: `/block/${id}`,
@@ -29,11 +43,17 @@ export const adminApi = baseApi.injectEndpoints({
       query: ({ id }) => ({
         url: `/agent/status/${id}`,
         method: "POST",
-        body: { agentId:id},
+        body: { agentId: id },
       }),
       invalidatesTags: ["allAgents"],
     }),
   }),
 });
 
-export const { useAllUsersQuery, useAllAgentsQuery,useAgentStatusMutation, useUpdateUserStatusMutation } = adminApi;
+export const {
+  useAllUsersQuery,
+  useAllAgentsQuery,
+  useAgentStatusMutation,
+  useUpdateUserStatusMutation,
+  useAllTransactionsQuery,
+} = adminApi;

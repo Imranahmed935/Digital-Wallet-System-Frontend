@@ -61,7 +61,7 @@ const TransactionHistory = () => {
                 className={`text-sm font-medium ${
                   txn.status === "COMPLETED"
                     ? "text-green-600"
-                    : txn.status === "PENDING"
+                    : txn.status === "Failed"
                     ? "text-yellow-600"
                     : "text-red-600"
                 }`}

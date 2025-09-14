@@ -13,15 +13,17 @@ import {
 } from "@/components/ui/popover";
 import { role } from "@/constant/role";
 
-
-
 import {
   authApi,
+
   useLogoutMutation,
+
   useUserInfoQuery,
 } from "@/redux/features/auth/auth.api";
-import { useDispatch } from "react-redux";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { useAppDispatch } from "@/redux/hooks";
+
+
+import { Link, NavLink, useNavigate,  } from "react-router-dom";
 
 const navigationLinks = [
   { href: "/", label: "Home", role: "PUBLIC" },
@@ -36,9 +38,10 @@ const navigationLinks = [
 ];
 
 export default function Navbar() {
-  const { data } = useUserInfoQuery(undefined);
+  const { data, isLoading } = useUserInfoQuery(undefined);
+
   const [logout] = useLogoutMutation();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const handleLogout = async () => {
@@ -48,9 +51,12 @@ export default function Navbar() {
   };
 
   const filteredLinks = navigationLinks.filter(
-    (link) => link.role === "PUBLIC" || (data?.role && link.role === data.role)
+    (link) => link.role === "PUBLIC" || (data?.data?.role && link.role === data?.data?.role)
   );
-
+  
+    if(isLoading){
+    return <h1>loading</h1>
+  }
   return (
     <header className="border-b px-4 md:px-6">
       <div className="flex h-16 items-center justify-between gap-4">
@@ -152,7 +158,7 @@ export default function Navbar() {
 
         {/* Right side (Auth buttons) */}
         <div className="flex items-center gap-2">
-          {data?.email ? (
+          {data?.data?.email ? (
             <Button
               onClick={handleLogout}
               variant="outline"
@@ -168,5 +174,6 @@ export default function Navbar() {
         </div>
       </div>
     </header>
+    
   );
 }
