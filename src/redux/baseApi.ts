@@ -12,7 +12,8 @@ export const baseApi = createApi({
         "allAgents",
         "transactions",
         "cashIn",
-        "cashOut"
+        "cashOut",
+        "agentTransaction"
     ],
     endpoints:()=>({})
 })
