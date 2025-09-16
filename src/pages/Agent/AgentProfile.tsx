@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Loader2, Mail, Phone, CalendarDays, Key } from "lucide-react";
 import EditProfile from "@/components/EditProfile";
 
-const UserProfile = () => {
+const AgentProfile = () => {
   const { data: user, isLoading, error } = useUserInfoQuery(undefined);
 
   if (isLoading) {
@@ -92,5 +92,5 @@ const UserProfile = () => {
   );
 };
 
-export default UserProfile;
+export default AgentProfile;
 

@@ -1,0 +1,97 @@
+import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "./ui/form";
+import { useForm, type FieldValues, type SubmitHandler } from "react-hook-form";
+
+import { toast } from "sonner";
+import { useCashInMutation } from "@/redux/features/agent/agent.api";
+
+
+export function AgentAddMoneyModal() {
+const [agentsAddMoney] = useCashInMutation()
+  
+  const form = useForm();
+
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+    try {
+      const payload = {
+         receiverPhone: data.phone,
+        amount: Number(data.amount),
+       
+      };
+       console.log(payload)
+       await agentsAddMoney(payload).unwrap();
+       toast.success("Cash-In Successfully!")
+     
+      form.reset();
+    } catch (error) {
+      console.error(error);
+      alert("Failed to add money");
+    }
+  };
+
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button variant="outline">Add Money</Button>
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-[425px]">
+        <DialogHeader>
+          <DialogTitle>Add Money</DialogTitle>
+          <DialogDescription>
+            Enter user phone number and amount to add money.
+          </DialogDescription>
+        </DialogHeader>
+
+        {/* Form starts here */}
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+            <FormField
+              control={form.control}
+              name="phone"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Phone</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Enter phone" {...field} value={field.value || ""} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="amount"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Amount</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Amount" type="number" {...field} value={field.value || ""} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            {/* Submit button inside form */}
+            <div className="flex justify-end gap-2">
+              <DialogClose asChild>
+                <Button variant="outline">Cancel</Button>
+              </DialogClose>
+              <Button type="submit">Add</Button>
+            </div>
+          </form>
+        </Form>
+      </DialogContent>
+    </Dialog>
+  );
+}

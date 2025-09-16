@@ -5,6 +5,7 @@ import ManageAgents from "@/pages/Admin/ManageAgents";
 import Transactions from "@/pages/Admin/Transactions";
 import Profile from "@/pages/Admin/Profile";
 
+
 export const AdminSidebarItems: ISidebarItem[] = [
   {
     title: "Dashboard",
@@ -20,12 +21,12 @@ export const AdminSidebarItems: ISidebarItem[] = [
     title: "Management",
     items: [
       {
-        title: "Users",
+        title: "AllUsers",
         url: "users",
         component: ManageUsers,
       },
       {
-        title: "Agents",
+        title: "AllAgents",
         url: "agents",
         component: ManageAgents,
       },

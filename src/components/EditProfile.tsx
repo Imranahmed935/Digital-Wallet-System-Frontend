@@ -28,9 +28,9 @@ export default function EditProfile() {
 
   useEffect(() => {
     if (data) {
-      setName(data.name || "");
-      setEmail(data.email || "");
-      setPhone(data.phone || "");
+      setName(data.data.name || "");
+      setEmail(data.data.email || "");
+      setPhone(data.data.phone || "");
     }
   }, [data]);
 

@@ -20,7 +20,7 @@ const TransactionHistory = () => {
   });
 
   // extract correctly
-  const transactions = data || [];
+  const transactions = data?.data || [];
   const totalPages = data?.meta?.pages;
 
   if (isLoading)

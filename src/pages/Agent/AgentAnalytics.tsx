@@ -1,3 +1,5 @@
+import { AgentAddMoneyModal } from "@/components/AgentAddMoneyModal";
+import { AgentWithdrawModal } from "@/components/AgentWithDrawModal";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowDownCircle, ArrowUpCircle, User, Wallet } from "lucide-react";
 
@@ -64,14 +66,14 @@ const AgentAnalytics = () => {
         <Card className="bg-indigo-50 shadow-md rounded-xl cursor-pointer hover:bg-indigo-100 transition">
           <CardContent className="flex flex-col items-center justify-center p-6">
             <ArrowDownCircle className="w-8 h-8 text-indigo-600 mb-2" />
-            <p className="text-gray-800 font-medium">Add Money to User</p>
+            <AgentAddMoneyModal/>
           </CardContent>
         </Card>
 
         <Card className="bg-indigo-50 shadow-md rounded-xl cursor-pointer hover:bg-indigo-100 transition">
           <CardContent className="flex flex-col items-center justify-center p-6">
             <ArrowUpCircle className="w-8 h-8 text-indigo-600 mb-2" />
-            <p className="text-gray-800 font-medium">Withdraw Money</p>
+             <AgentWithdrawModal/>
           </CardContent>
         </Card>
 
