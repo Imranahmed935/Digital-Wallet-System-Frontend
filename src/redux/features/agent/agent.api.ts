@@ -18,9 +18,18 @@ export const adminApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["cashIn"],
     }),
+    cashOut: builder.mutation({
+      query: (cashOutInfo) => ({
+        url:"/cash-out",
+        method: "POST",
+        data:cashOutInfo
+      }),
+      invalidatesTags: ["cashOut"],
+    }),
   }),
 });
 
 export const {
-useCashInMutation
+useCashInMutation,
+useCashOutMutation
 } = adminApi;

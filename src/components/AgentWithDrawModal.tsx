@@ -11,21 +11,21 @@ import {
 import { Input } from "@/components/ui/input";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "./ui/form";
 import { useForm, type FieldValues, type SubmitHandler } from "react-hook-form";
-import { useWithdrawMutation } from "@/redux/features/user/user.api";
 import { toast } from "sonner";
+import { useCashOutMutation } from "@/redux/features/agent/agent.api";
 
 
 export function AgentWithdrawModal() {
-  const [withdraw] = useWithdrawMutation()
+  const [withdrawAgent] = useCashOutMutation()
   const form = useForm();
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     try {
       const payload = {
-        phone: data.phone,
+        userPhone: data.phone,
         amount: Number(data.amount),
       };
-       await withdraw(payload).unwrap();
+       await withdrawAgent(payload).unwrap();
        toast.success("Money withdraw Successfully!")
      
       form.reset();
