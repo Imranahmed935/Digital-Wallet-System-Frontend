@@ -14,6 +14,7 @@ import { useLoginMutation } from "@/redux/features/auth/auth.api";
 import { useForm, type FieldValues, type SubmitHandler } from "react-hook-form";
 
 import { Link, useNavigate } from "react-router";
+import { toast } from "sonner";
 
 export function Login({
   className,
@@ -24,9 +25,9 @@ export function Login({
   const [login] = useLoginMutation();
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     try {
-      const res = await login(data).unwrap();
+      await login(data).unwrap();
         navigate("/")
-        console.log(res)
+        toast.success("login Successful")
     } catch (err) {
       console.error(err);
     }

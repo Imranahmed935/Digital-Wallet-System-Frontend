@@ -10,9 +10,10 @@ const AgentAnalytics = () => {
   const { data: user } = useUserInfoQuery(undefined);
   const agentId = user?.data?._id;
 
-  const { data: transactions } = useAgentTransactionsQuery(agentId, {
-    skip: !agentId,
-  });
+  const { data: transactions } = useAgentTransactionsQuery(
+    { id: agentId,},
+    { skip: !agentId }
+  );
 
   const cashInTotal = transactions?.data
     .filter((tx: any) => tx.type === "CASH_IN" && tx.status === "COMPLETED")
@@ -27,7 +28,7 @@ const AgentAnalytics = () => {
     0
   );
 
-  const totalTransactions = transactions?.data?.length || 0;
+  const totalTransactions = transactions?.totalTransactions || 0;
 
   return (
     <div className="min-h-screen bg-gray-100 p-4 sm:p-6 md:p-8 space-y-6">

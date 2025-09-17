@@ -19,7 +19,7 @@ const TransactionHistory = () => {
     limit,
   });
 
-  // extract correctly
+  
   const transactions = data?.data || [];
   const totalPages = data?.meta?.pages;
 

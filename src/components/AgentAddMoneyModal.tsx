@@ -35,7 +35,7 @@ const [agentsAddMoney] = useCashInMutation()
       form.reset();
     } catch (error) {
       console.error(error);
-      alert("Failed to add money");
+      toast.error("Failed to add money");
     }
   };
 

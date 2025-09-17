@@ -2,13 +2,14 @@ import { baseApi } from "@/redux/baseApi";
 
 export const adminApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    agentTransactions: builder.query({
-      query: (id) => ({
-        url: `/commission/${id}`,
-        method: "GET",
-      }),
-      providesTags: ["agentTransaction"],
-    }),
+   agentTransactions: builder.query({
+  query: ({ id, page = 1, limit = 10, search = "", status = "", type = "" }) => ({
+    url: `/commission/${id}?page=${page}&limit=${limit}&search=${search}&status=${status}&type=${type}`,
+    method: "GET",
+  }),
+  providesTags: ["agentTransaction"],
+}),
+
 
     cashIn: builder.mutation({
       query: (cashInfo) => ({
@@ -16,7 +17,7 @@ export const adminApi = baseApi.injectEndpoints({
         method: "POST",
         data: cashInfo,
       }),
-      invalidatesTags: ["cashIn"],
+      invalidatesTags: ["agentTransaction"],
     }),
     cashOut: builder.mutation({
       query: (cashOutInfo) => ({
@@ -24,7 +25,7 @@ export const adminApi = baseApi.injectEndpoints({
         method: "POST",
         data: cashOutInfo,
       }),
-      invalidatesTags: ["cashOut"],
+      invalidatesTags: ["agentTransaction"],
     }),
   }),
 });

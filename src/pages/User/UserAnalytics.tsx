@@ -1,19 +1,27 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useEffect } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowDownCircle, ArrowUpCircle, Wallet } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Modal } from "@/components/Modal";
-import { useAllWalletQuery} from "@/redux/features/user/user.api";
+import { useAllWalletQuery, useTransactionQuery } from "@/redux/features/user/user.api";
 import { WithdrawModal } from "@/components/WithdrawModal";
 import { SendModal } from "@/components/SendModal";
 import { useUserInfoQuery } from "@/redux/features/auth/auth.api";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
 const UserAnalytics = () => {
+  const [currentPage] = useState(1);
+  const [limit] = useState(10);
   const [showBalance, setShowBalance] = useState(false);
+
   const { data, isLoading, error } = useAllWalletQuery(undefined);
-  const {data:userData} = useUserInfoQuery(undefined);
-    
+  const { data: userData } = useUserInfoQuery(undefined);
+  const { data: recentTransactions } = useTransactionQuery({
+    page: currentPage,
+    limit,
+  });
 
   const walletBalance = data?.data.balance || 0;
 
@@ -30,6 +38,7 @@ const UserAnalytics = () => {
 
   return (
     <div className="min-h-screen bg-violet-50 p-4">
+      {/* Balance Card */}
       <Card className="bg-gradient-to-r from-violet-500 to-violet-700 text-white rounded md:p-4 p-2">
         <CardContent className="flex items-center justify-between p-0 gap-2 flex-wrap">
           <div className="flex items-center gap-2 flex-1 min-w-0">
@@ -75,12 +84,13 @@ const UserAnalytics = () => {
         </CardContent>
       </Card>
 
+      {/* Action Cards */}
       <div className="grid grid-cols-3 gap-4 mt-6">
         <Card className="bg-violet-100 rounded-2xl shadow-sm">
           <CardContent className="flex flex-col items-center justify-center py-6">
             <ArrowDownCircle className="w-12 h-12 text-violet-500" />
             <span className="mt-3 text-base font-medium">
-              <WithdrawModal/>
+              <WithdrawModal />
             </span>
           </CardContent>
         </Card>
@@ -98,11 +108,53 @@ const UserAnalytics = () => {
           <CardContent className="flex flex-col items-center justify-center py-6">
             <Wallet className="w-12 h-12 text-violet-500" />
             <span className="mt-3 text-base font-medium">
-              <SendModal/>
+              <SendModal />
             </span>
           </CardContent>
         </Card>
       </div>
+
+     
+      <div className="mt-8">
+  <h2 className="text-lg font-bold mb-3">Recent Transactions</h2>
+  <div className="bg-white rounded-lg shadow p-4 overflow-x-auto">
+    {recentTransactions?.data?.length > 0 ? (
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead className="text-left">Type</TableHead>
+            <TableHead className="text-left">Status</TableHead>
+            <TableHead className="text-left">Amount</TableHead>
+            <TableHead className="text-left">Date</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {recentTransactions.data.map((tx: any) => (
+            <TableRow key={tx._id}>
+              <TableCell className="capitalize text-left">{tx.type}</TableCell>
+              <TableCell
+                className={
+                  tx.status === "COMPLETED"
+                    ? "text-green-600 text-left"
+                    : "text-red-600 text-left"
+                }
+              >
+                {tx.status}
+              </TableCell>
+              <TableCell className="text-left">৳ {tx.amount}</TableCell>
+              <TableCell className="text-left">
+                {new Date(tx.createdAt).toLocaleDateString()}
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    ) : (
+      <p className="text-gray-500 text-sm">No recent transactions</p>
+    )}
+  </div>
+</div>
+
     </div>
   );
 };
