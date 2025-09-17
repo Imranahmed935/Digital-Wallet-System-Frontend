@@ -65,7 +65,7 @@ const Faq3 = ({
           ))}
         </Accordion>
 
-        {/* Add margin-top to separate from accordion */}
+     
         <div className="text-center mt-20">
           <h3 className="text-2xl font-semibold">{supportHeading}</h3>
           <p className="text-muted-foreground my-4">{supportDescription}</p>

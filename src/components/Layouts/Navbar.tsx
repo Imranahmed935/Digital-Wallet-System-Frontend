@@ -127,7 +127,7 @@ export default function Navbar() {
               <Link to="/" className="text-primary hover:text-primary/90">
                 <Logo />
               </Link>
-              <h1 className="text-2xl font-bold">zPAY</h1>
+             <h1 className="text-violet-600 md:text-3xl text-2xl font-bold">ZPay</h1>
             </div>
 
             {/* Desktop navigation menu */}

@@ -45,7 +45,7 @@ const Contact = () => {
       <div className="container mx-auto px-4 space-y-16">
         {/* Heading */}
         <div className="text-center">
-          <h1 className="text-4xl font-bold mb-4">Contact Us</h1>
+          <h1 className="text-4xl font-bold mb-4">Contact with <span className="text-violet-600">ZPay's</span></h1>
           <p className="text-gray-600 max-w-xl mx-auto">
             Have any questions? Reach out to us and we'll get back to you promptly.
           </p>
