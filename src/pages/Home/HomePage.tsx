@@ -1,8 +1,11 @@
+import Feature from "@/components/Feature";
+import { HeroSection } from "@/components/modules/Home/HeroSection";
 
 const HomePage = () => {
     return (
         <div>
-            <h1>hello</h1>
+            <HeroSection/>
+            <Feature/>
         </div>
     );
 };
