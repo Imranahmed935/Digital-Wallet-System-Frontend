@@ -36,9 +36,9 @@ export function HeroSection({
         <div className="flex flex-col gap-7 lg:w-2/3">
           <h2 className="text-5xl font-semibold text-foreground md:text-5xl lg:text-8xl">
             <span>{heading}</span>{" "}
-            <span className="text-muted-foreground">{subheading}</span>
+            <span className="text-muted-foreground ">{subheading}</span>
           </h2>
-          <p className="text-base text-muted-foreground md:text-lg lg:text-xl">
+          <p className="text-base text-pink-600 md:text-lg lg:text-xl">
             {description}
           </p>
 

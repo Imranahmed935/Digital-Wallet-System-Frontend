@@ -29,7 +29,7 @@ const features = [
 
 const Feature = () => {
   return (
-    <section className="bg-background md:mb-32">
+    <section className="bg-background">
       <Marquee gradient={false} speed={40} pauseOnHover className="overflow-hidden">
         <div className="flex gap-16">
           {features.map((feature, idx) => (
