@@ -37,12 +37,12 @@ const About = () => {
   ];
 
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-20">
       <div className="container mx-auto space-y-32">
 
         <div className="grid gap-5 text-center md:grid-cols-2 md:text-left mb-14">
-          <h1 className="text-5xl font-semibold">About Us</h1>
-          <p className="text-gray-600">
+          <h1 className="text-5xl font-semibold dark:text-foreground">About Us</h1>
+          <p className="text-gray-600 dark:text-foreground">
             We are a passionate team dedicated to creating innovative solutions 
             that empower businesses and customers alike.
           </p>
@@ -75,18 +75,18 @@ const About = () => {
         </div>
 
 
-        <div className="text-center">
+        <div className="text-center dark:bg-primary-foreground p-5">
           <p className="mb-8 text-gray-600">Trusted by companies worldwide</p>
-          <div className="flex flex-wrap justify-center gap-8">
+          <div className="flex flex-wrap justify-center gap-8 ">
             {companies.map((company, idx) => (
-              <img key={idx} src={company.src} alt={company.alt} className="h-8 w-auto" />
+              <img key={idx} src={company.src} alt={company.alt} className="h-8 w-auto  dark:text-foreground" />
             ))}
           </div>
         </div>
 
         <div className="md:flex flex-col justify-center items-center">
           <h2 className="text-3xl font-semibold mb-4"><span className="text-violet-600">ZPay's</span> Service Story</h2>
-          <p className="text-gray-600 max-w-3xl ">
+          <p className="text-gray-600 max-w-3xl text-muted-foreground">
             Our journey started with a mission to simplify digital transactions
             and empower businesses with cutting-edge solutions. Over the years,
             we have grown into a trusted platform providing seamless, secure,
@@ -95,7 +95,7 @@ const About = () => {
         </div>
 
       
-        <div className="relative overflow-hidden rounded-xl bg-gray-100 p-10 md:p-16">
+        <div className="relative overflow-hidden rounded-xl bg-gray-100 dark:bg-accent p-10 md:p-16">
           <div className="flex flex-col gap-4 text-center md:text-left">
             <h2 className="text-4xl font-semibold"><span className="text-violet-600">ZPay's</span> Achievements</h2>
             <p className="text-gray-600 max-w-xl">
@@ -104,8 +104,8 @@ const About = () => {
           </div>
           <div className="mt-10 flex flex-wrap justify-between gap-10 text-center">
             {achievements.map((item, idx) => (
-              <div className="flex flex-col gap-4" key={idx}>
-                <p className="text-gray-700">{item.label}</p>
+              <div className="flex flex-col gap-4 " key={idx}>
+                <p className="text-gray-700 dark:text-foreground">{item.label}</p>
                 <span className="text-4xl font-semibold md:text-5xl">{item.value}</span>
               </div>
             ))}
@@ -118,11 +118,11 @@ const About = () => {
             <h2 className="my-6 text-pretty text-2xl font-bold lg:text-4xl">
             <span className="text-violet-600">ZPay's</span> Team
             </h2>
-            <p className="text-muted-foreground mb-8 max-w-3xl lg:text-xl">
+            <p className="text-muted-foreground mb-8 max-w-3xl lg:text-xl ">
               Meet the passionate individuals behind our mission, driving innovation and excellence.
             </p>
           </div>
-          <div className="container mt-16 grid gap-x-8 gap-y-16 md:grid-cols-2 lg:grid-cols-3">
+          <div className="container mt-16 grid gap-x-8 gap-y-16 md:grid-cols-2 lg:grid-cols-3 dark:bg-card p-4">
             {teamMembers.map((member) => (
               <div key={member.id} className="flex flex-col items-center">
                 <Avatar className="mb-4 h-20 w-20 border-1 border-violet-600 md:mb-5 lg:h-32 lg:w-32">

@@ -41,36 +41,36 @@ const Contact = () => {
   };
 
   return (
-    <section className="py-20 bg-gray-50">
-      <div className="container mx-auto px-4 space-y-16">
+    <section id="contact-form" className="py-20">
+      <div className="px-4 space-y-16">
         {/* Heading */}
         <div className="text-center">
           <h1 className="text-4xl font-bold mb-4">Contact with <span className="text-violet-600">ZPay's</span></h1>
-          <p className="text-gray-600 max-w-xl mx-auto">
+          <p className="text-gray-600 max-w-xl mx-auto dark:text-foreground">
             Have any questions? Reach out to us and we'll get back to you promptly.
           </p>
         </div>
 
  
-        <div className="flex flex-col lg:flex-row gap-10">
+        <div className="flex flex-col lg:flex-row gap-6">
 
-          <div className="flex-1 bg-white p-8 rounded-xl shadow-md space-y-6">
+          <div className="flex-1 bg-white dark:bg-card p-8 rounded space-y-6">
             <div className="text-center lg:text-left">
               <h3 className="text-xl font-semibold mb-2">📧 Email</h3>
-              <p className="text-gray-600">imrantahir9918@gmail.com</p>
+              <p className="text-gray-600 dark:text-foreground">imrantahir9918@gmail.com</p>
             </div>
             <div className="text-center lg:text-left">
               <h3 className="text-xl font-semibold mb-2">📞 Phone</h3>
-              <p className="text-gray-600">+880 1734890724</p>
+              <p className="text-gray-600 dark:text-foreground">+880 1734890724</p>
             </div>
             <div className="text-center lg:text-left">
               <h3 className="text-xl font-semibold mb-2">📍 Address</h3>
-              <p className="text-gray-600">Sylhet, Bangladesh</p>
+              <p className="text-gray-600 dark:text-foreground">Sylhet, Bangladesh</p>
             </div>
           </div>
 
       
-          <div className="flex-1 bg-white p-8 rounded-xl shadow-md">
+          <div className="flex-1 bg-white dark:bg-card p-8 rounded">
             {success && (
               <p
                 className={`mb-4 font-medium text-center ${
@@ -133,7 +133,7 @@ const Contact = () => {
         </div>
 
 
-        <div className="rounded-xl overflow-hidden shadow-md">
+        <div className="rounded-xl overflow-hidden dark:bg-card p-4">
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.914278435354!2d90.39299931543153!3d23.81033218459143!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c7b2b7f71f2b%3A0x2f0d5eec76cf0b8d!2sDhaka%2C%20Bangladesh!5e0!3m2!1sen!2sus!4v1694949800000!5m2!1sen!2sus"
             width="100%"

@@ -52,7 +52,7 @@ const AllTransactions = () => {
             setStatus(e.target.value);
             setPage(1);
           }}
-          className="border p-2 rounded"
+          className="border p-2 rounded dark:bg-card"
         >
           <option value="">All Status</option>
           <option value="COMPLETED">Completed</option>
@@ -66,7 +66,7 @@ const AllTransactions = () => {
             setType(e.target.value);
             setPage(1);
           }}
-          className="border p-2 rounded"
+          className="border p-2 rounded dark:bg-card"
         >
           <option value="">All Types</option>
           <option value="CASH_IN">Cash In</option>

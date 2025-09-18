@@ -28,7 +28,7 @@ const Profile = () => {
   const user = data?.data;
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className="min-h-screen  p-6">
       <Card className="w-full max-w-3xl rounded overflow-hidden mx-auto">
         {/* Banner with Edit button */}
         <div className="bg-gradient-to-r from-blue-600 to-indigo-600 h-32 relative">
@@ -54,28 +54,28 @@ const Profile = () => {
         </CardHeader>
 
         {/* Profile Info */}
-        <CardContent className="md:flex justify-around">
-          <div className="flex items-center p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition gap-3">
+        <CardContent className="md:flex justify-around ">
+          <div className="flex items-center p-4 bg-white dark:bg-card rounded-xl shadow-sm hover:shadow-md transition gap-3">
             <Mail className="h-6 w-6 text-blue-500" />
             <div>
-              <p className="text-sm text-gray-500">Email</p>
-              <p className="font-medium text-gray-900">{user?.email}</p>
+              <p className="text-sm text-gray-500 dark:text-foreground">Email</p>
+              <p className="font-medium text-gray-900 dark:text-muted-foreground">{user?.email}</p>
             </div>
           </div>
 
-          <div className="flex items-center p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition gap-3">
+          <div className="flex items-center p-4 bg-white rounded-xl dark:bg-card shadow-sm hover:shadow-md transition gap-3">
             <Phone className="h-6 w-6 text-green-500" />
             <div>
-              <p className="text-sm text-gray-500">Phone</p>
-              <p className="font-medium text-gray-900">{user?.phone || "Not provided"}</p>
+              <p className="text-sm text-gray-500 dark:text-foreground">Phone</p>
+              <p className="font-medium text-gray-900 dark:text-muted-foreground">{user?.phone || "Not provided"}</p>
             </div>
           </div>
 
-          <div className="flex items-center p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition gap-3">
+          <div className="flex items-center p-4 bg-white rounded-xl dark:bg-card shadow-sm hover:shadow-md transition gap-3">
             <CalendarDays className="h-6 w-6 text-purple-500" />
             <div>
-              <p className="text-sm text-gray-500">Member Since</p>
-              <p className="font-medium text-gray-900">
+              <p className="text-sm text-gray-500 dark:text-foreground">Member Since</p>
+              <p className="font-medium text-gray-900 dark:text-muted-foreground">
                 {user?.createdAt ? new Date(user.createdAt).toLocaleDateString() : "N/A"}
               </p>
             </div>

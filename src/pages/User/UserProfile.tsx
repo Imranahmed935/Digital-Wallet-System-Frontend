@@ -28,7 +28,7 @@ const UserProfile = () => {
   const u = user.data;
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className="min-h-screen p-6">
       <Card className="w-full max-w-3xl rounded overflow-hidden mx-auto">
         {/* Banner with Edit button */}
         <div className="bg-gradient-to-r from-blue-600 to-indigo-600 h-32 relative">
@@ -53,36 +53,36 @@ const UserProfile = () => {
 
         {/* Profile Info */}
         <CardContent className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-6 px-6 pb-6">
-          <div className="flex items-center p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition gap-3">
+          <div className="flex items-center p-4 bg-white dark:bg-accent rounded-xl shadow-sm hover:shadow-md transition gap-3">
             <Mail className="h-6 w-6 text-blue-500" />
             <div>
-              <p className="text-sm text-gray-500">Email</p>
-              <p className="font-medium text-gray-900">{u.email}</p>
+              <p className="text-sm text-gray-500 dark:text-foreground">Email</p>
+              <p className="font-medium text-gray-900 dark:text-foreground">{u.email}</p>
             </div>
           </div>
 
-          <div className="flex items-center p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition gap-3">
+          <div className="flex items-center p-4 bg-white dark:bg-accent dark:border-violet-600 rounded-xl shadow-sm hover:shadow-md transition gap-3">
             <Phone className="h-6 w-6 text-green-500" />
             <div>
-              <p className="text-sm text-gray-500">Phone</p>
-              <p className="font-medium text-gray-900">{u.phone || "Not provided"}</p>
+              <p className="text-sm text-gray-500 dark:text-foreground">Phone</p>
+              <p className="font-medium text-gray-900 dark:text-foreground">{u.phone || "Not provided"}</p>
             </div>
           </div>
 
-          <div className="flex items-center p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition gap-3">
+          <div className="flex items-center p-4 bg-white dark:bg-accent rounded-xl shadow-sm hover:shadow-md transition gap-3">
             <CalendarDays className="h-6 w-6 text-purple-500" />
             <div>
-              <p className="text-sm text-gray-500">Member Since</p>
-              <p className="font-medium text-gray-900">{new Date(u.createdAt).toLocaleDateString()}</p>
+              <p className="text-sm text-gray-500 dark:text-foreground">Member Since</p>
+              <p className="font-medium text-gray-900 dark:text-foreground">{new Date(u.createdAt).toLocaleDateString()}</p>
             </div>
           </div>
 
           {/* Masked Password */}
-          <div className="flex items-center p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition gap-3">
+          <div className="flex items-center p-4 bg-white dark:bg-accent rounded-xl shadow-sm hover:shadow-md transition gap-3">
             <Key className="h-6 w-6 text-red-500" />
             <div>
-              <p className="text-sm text-gray-500">Password</p>
-              <p className="font-medium text-gray-900">********</p>
+              <p className="text-sm text-gray-500 dark:text-foreground">Password</p>
+              <p className="font-medium text-gray-900 dark:text-foreground">********</p>
               <button className="text-blue-500 text-sm mt-1 hover:underline">Change Password</button>
             </div>
           </div>

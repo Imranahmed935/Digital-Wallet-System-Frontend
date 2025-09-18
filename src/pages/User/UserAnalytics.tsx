@@ -37,7 +37,7 @@ const UserAnalytics = () => {
   if (error) return <p>Failed to load wallet</p>;
 
   return (
-    <div className="min-h-screen bg-violet-50 p-4">
+    <div id="user-analytic" className="min-h-screen p-4">
       {/* Balance Card */}
       <Card className="bg-gradient-to-r from-violet-500 to-violet-700 text-white rounded md:p-4 p-2">
         <CardContent className="flex items-center justify-between p-0 gap-2 flex-wrap">
@@ -85,8 +85,8 @@ const UserAnalytics = () => {
       </Card>
 
       {/* Action Cards */}
-      <div className="grid grid-cols-3 gap-4 mt-6">
-        <Card className="bg-violet-100 rounded-2xl shadow-sm">
+      <div className="grid grid-cols-3 gap-4 mt-6 ">
+        <Card className="bg-violet-100 rounded-2xl shadow-sm dark:bg-card dark:border-violet-600">
           <CardContent className="flex flex-col items-center justify-center py-6">
             <ArrowDownCircle className="w-12 h-12 text-violet-500" />
             <span className="mt-3 text-base font-medium">
@@ -95,7 +95,7 @@ const UserAnalytics = () => {
           </CardContent>
         </Card>
 
-        <Card className="bg-violet-100 rounded-2xl shadow-sm">
+        <Card className="bg-violet-100 rounded-2xl shadow-sm dark:bg-card dark:border-violet-600">
           <CardContent className="flex flex-col items-center justify-center py-6">
             <ArrowUpCircle className="w-12 h-12 text-violet-500" />
             <div className="mt-3 text-base font-medium">
@@ -104,7 +104,7 @@ const UserAnalytics = () => {
           </CardContent>
         </Card>
 
-        <Card className="bg-violet-100 rounded-2xl shadow-sm">
+        <Card className="bg-violet-100 rounded-2xl shadow-sm dark:bg-card dark:border-violet-600">
           <CardContent className="flex flex-col items-center justify-center py-6">
             <Wallet className="w-12 h-12 text-violet-500" />
             <span className="mt-3 text-base font-medium">
@@ -117,7 +117,7 @@ const UserAnalytics = () => {
      
       <div className="mt-8">
   <h2 className="text-lg font-bold mb-3">Recent Transactions</h2>
-  <div className="bg-white rounded-lg shadow p-4 overflow-x-auto">
+  <div className="bg-white dark:bg-card rounded-lg shadow p-4 overflow-x-auto">
     {recentTransactions?.data?.length > 0 ? (
       <Table>
         <TableHeader>

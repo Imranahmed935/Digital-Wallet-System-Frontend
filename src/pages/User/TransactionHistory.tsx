@@ -31,8 +31,8 @@ const TransactionHistory = () => {
     );
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
-      <h1 className="text-3xl font-bold text-gray-800 mb-6">
+    <div className="min-h-screen  p-6">
+      <h1 className="text-3xl dark:text-foreground font-bold text-gray-800 mb-6">
         Transaction History
       </h1>
 
@@ -44,15 +44,15 @@ const TransactionHistory = () => {
         {transactions.map((txn: any) => (
           <div
             key={txn._id}
-            className="bg-white shadow-md rounded-lg p-4 flex justify-between items-center hover:shadow-lg transition-shadow"
+            className="bg-white dark:bg-card rounded-lg p-4 flex justify-between items-center hover:shadow-lg transition-shadow"
           >
             <div>
-              <p className="font-semibold text-gray-800">{txn.type}</p>
-              <p className="text-gray-500 text-sm">
+              <p className="font-semibold text-gray-800 text-left dark:text-foreground">{txn.type}</p>
+              <p className="text-gray-500 text-left text-sm dark:text-muted-foreground">
                 {new Date(txn.createdAt).toLocaleString()}
               </p>
               {txn.meta?.description && (
-                <p className="text-gray-400 text-sm">{txn.meta.description}</p>
+                <p className="text-gray-400 text-sm text-left dark:text-muted-foreground">{txn.meta.description}</p>
               )}
             </div>
             <div className="text-right">

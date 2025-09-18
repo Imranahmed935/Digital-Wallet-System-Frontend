@@ -78,7 +78,7 @@ const Transactions = () => {
           name="status"
           value={filters.status}
           onChange={handleFilterChange}
-          className="border px-3 py-2 rounded text-sm w-full"
+          className="border dark:bg-card px-3 py-2 rounded text-sm w-full"
         >
           <option value="">All Status</option>
           <option value="PENDING">Pending</option>
@@ -89,7 +89,7 @@ const Transactions = () => {
           name="category"
           value={filters.category}
           onChange={handleFilterChange}
-          className="border px-3 py-2 rounded text-sm w-full"
+          className="border px-3 py-2 dark:bg-card rounded text-sm w-full"
         >
           <option value="">All Categories</option>
           <option value="DEPOSIT">Deposit</option>
@@ -127,7 +127,7 @@ const Transactions = () => {
       ) : (
         <div className="overflow-x-auto">
           <table className="w-full border-collapse border text-sm md:text-base">
-            <thead className="bg-gray-100">
+            <thead className="bg-gray-100 dark:bg-card">
               <tr>
                 <th className="p-2 text-left border">Date</th>
                 <th className="p-2 text-left border">Type</th>

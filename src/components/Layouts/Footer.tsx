@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="bg-white">
+    <footer className="bg-white dark:bg-card">
       <div className="mx-auto max-w-screen-xl space-y-8 px-4 py-16 sm:px-6 lg:space-y-16 lg:px-8">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           <div>
@@ -11,7 +11,7 @@ const Footer = () => {
               <Logo />
               <h1 className="text-violet-600 md:text-3xl text-2xl font-bold">ZPay</h1>
             </div>
-            <p className="mt-4 max-w-xs text-gray-500 text-left">
+            <p className="mt-4 max-w-xs text-gray-500 text-left dark:text-foreground">
               ZPay isn’t just a digital wallet—it’s freedom in your pocket. We
               believe money should move as fast as you do.
             </p>
@@ -27,7 +27,7 @@ const Footer = () => {
                   <span className="sr-only">Facebook</span>
 
                   <svg
-                    className="size-6"
+                    className="size-6 dark:text-foreground"
                     fill="currentColor"
                     viewBox="0 0 24 24"
                     aria-hidden="true"
@@ -51,7 +51,7 @@ const Footer = () => {
                   <span className="sr-only">Instagram</span>
 
                   <svg
-                    className="size-6"
+                    className="size-6 dark:text-foreground"
                     fill="currentColor"
                     viewBox="0 0 24 24"
                     aria-hidden="true"
@@ -75,7 +75,7 @@ const Footer = () => {
                   <span className="sr-only">Twitter</span>
 
                   <svg
-                    className="size-6"
+                    className="size-6 dark:text-foreground"
                     fill="currentColor"
                     viewBox="0 0 24 24"
                     aria-hidden="true"
@@ -95,7 +95,7 @@ const Footer = () => {
                   <span className="sr-only">GitHub</span>
 
                   <svg
-                    className="size-6"
+                    className="size-6 dark:text-foreground"
                     fill="currentColor"
                     viewBox="0 0 24 24"
                     aria-hidden="true"
@@ -119,7 +119,7 @@ const Footer = () => {
                   <span className="sr-only">Dribbble</span>
 
                   <svg
-                    className="size-6"
+                    className="size-6 dark:text-foreground"
                     fill="currentColor"
                     viewBox="0 0 24 24"
                     aria-hidden="true"
@@ -137,13 +137,13 @@ const Footer = () => {
 
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:col-span-2 lg:grid-cols-4">
             <div>
-              <p className="font-medium text-gray-900">Services</p>
+              <p className="font-medium text-gray-900 dark:text-foreground">Services</p>
 
               <ul className="mt-6 space-y-4 text-sm">
                 <li>
                   <Link
                     to="/feature"
-                    className="text-gray-700 transition hover:opacity-75"
+                    className="text-gray-700 dark:text-foreground transition hover:opacity-75"
                   >
                     {" "}
                     Features{" "}
@@ -153,7 +153,7 @@ const Footer = () => {
                 <li>
                   <Link
                     to="/pricing"
-                    className="text-gray-700 transition hover:opacity-75"
+                    className="text-gray-700 dark:text-foreground transition hover:opacity-75"
                   >
                     {" "}
                     Pricing{" "}
@@ -164,13 +164,13 @@ const Footer = () => {
             </div>
 
             <div>
-              <p className="font-medium text-gray-900">Company</p>
+              <p className="font-medium text-gray-900 dark:text-foreground">Company</p>
 
-              <ul className="mt-6 space-y-4 text-sm">
+              <ul className="mt-6 space-y-4 text-sm ">
                 <li>
                   <Link
                     to="/about"
-                    className="text-gray-700 transition hover:opacity-75"
+                    className="text-gray-700 transition hover:opacity-75 dark:text-foreground"
                   >
                     {" "}
                     About{" "}
@@ -180,7 +180,7 @@ const Footer = () => {
                 <li>
                   <Link
                     to="/about"
-                    className="text-gray-700 transition hover:opacity-75"
+                    className="text-gray-700 transition dark:text-foreground hover:opacity-75"
                   >
                     {" "}
                     Meet the Team{" "}
@@ -191,13 +191,13 @@ const Footer = () => {
             </div>
 
             <div>
-              <p className="font-medium text-gray-900">Helpful Links</p>
+              <p className="font-medium dark:text-foreground text-gray-900">Helpful Links</p>
 
               <ul className="mt-6 space-y-4 text-sm">
                 <li>
                   <Link
                     to="/contact"
-                    className="text-gray-700 transition hover:opacity-75"
+                    className="text-gray-700 dark:text-foreground transition hover:opacity-75"
                   >
                     {" "}
                     Contact{" "}
@@ -207,7 +207,7 @@ const Footer = () => {
                 <li>
                   <Link
                     to="/faq"
-                    className="text-gray-700 transition hover:opacity-75"
+                    className="text-gray-700 dark:text-foreground transition hover:opacity-75"
                   >
                     {" "}
                     FAQs{" "}
@@ -219,13 +219,13 @@ const Footer = () => {
             </div>
 
             <div>
-              <p className="font-medium text-gray-900">Legal</p>
+              <p className="font-medium text-gray-900 dark:text-foreground">Legal</p>
 
               <ul className="mt-6 space-y-4 text-sm">
                 <li>
                   <a
                     href="#"
-                    className="text-gray-700 transition hover:opacity-75"
+                    className="text-gray-700 dark:text-foreground transition hover:opacity-75"
                   >
                     {" "}
                     Accessibility{" "}
@@ -235,7 +235,7 @@ const Footer = () => {
                 <li>
                   <a
                     href="#"
-                    className="text-gray-700 transition hover:opacity-75"
+                    className="text-gray-700 dark:text-foreground transition hover:opacity-75"
                   >
                     {" "}
                     Returns Policy{" "}
@@ -249,7 +249,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <p className="text-xs text-gray-500">
+        <p className="text-xs text-gray-500 dark:text-foreground">
           &copy; 2025. Company <span className="text-violet-600">ZPay</span>. All rights reserved.
         </p>
       </div>

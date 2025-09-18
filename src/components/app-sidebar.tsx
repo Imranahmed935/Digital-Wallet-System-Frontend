@@ -24,11 +24,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       {/* Header with Logo and Dashboard */}
       <SidebarHeader className="flex items-center">
         <Logo />
-        <h1 className="text-lg font-semibold text-gray-800">Dashboard</h1>
+        <h1 className="text-lg font-semibold text-gray-800 dark:text-foreground">Dashboard</h1>
       </SidebarHeader>
 
       {/* Sidebar menu */}
-      <SidebarContent>
+      <SidebarContent id="dashboard-stats">
         {/* Top menu items */}
         <div className="flex flex-col">
           {navItems.map((section) => (

@@ -75,8 +75,8 @@ const ZPayFeatures: FeatureItem[] = [
 
 const Feature = () => {
   return (
-    <section className="py-20 bg-gray-50">
-      <div className="container mx-auto px-4 max-w-7xl">
+    <section id="feature-section" className="py-20">
+      <div>
         {/* Heading */}
         <div className="text-center mb-14">
           <p className="text-sm font-semibold uppercase text-violet-600">
@@ -85,7 +85,7 @@ const Feature = () => {
           <h2 className="text-3xl md:text-4xl font-bold">
             Why Choose <span className="text-violet-600">ZPay</span>?
           </h2>
-          <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
+          <p className="mt-4 text-gray-600 max-w-2xl mx-auto dark:text-foreground">
             ZPay brings you the fastest, most secure, and affordable way to
             manage your money. Explore our top features designed to make your
             life easier.
@@ -97,13 +97,14 @@ const Feature = () => {
           {ZPayFeatures.map((feature, idx) => (
             <div
               key={idx}
-              className="bg-white p-6 border border-violet-600 rounded-xl hover:shadow-lg transition"
+              className="bg-white dark:bg-card text-foreground dark:text-card-foreground p-6 border border-violet-600 rounded-xl hover:shadow-lg transition"
+
             >
               <div className="flex items-center justify-center w-12 h-12 rounded-full bg-violet-100 mb-4">
                 {feature.icon}
               </div>
               <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
-              <p className="text-gray-600 text-sm">{feature.description}</p>
+              <p className="text-gray-600 text-sm dark:text-foreground">{feature.description}</p>
             </div>
           ))}
         </div>

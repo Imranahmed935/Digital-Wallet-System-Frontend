@@ -24,6 +24,9 @@ import { useAppDispatch } from "@/redux/hooks";
 
 
 import { Link, NavLink, useNavigate,  } from "react-router-dom";
+import { ModeToggle } from "../ModeToggle";
+
+
 
 const navigationLinks = [
   { href: "/", label: "Home", role: "PUBLIC" },
@@ -58,7 +61,7 @@ export default function Navbar() {
     return <h1>loading</h1>
   }
   return (
-    <header className="border-b px-4 md:px-6">
+    <header id="nav-menu" className="border-b px-4 md:px-6">
       <div className="flex h-16 items-center justify-between gap-4">
         {/* Left side */}
         <div className="flex items-center gap-2">
@@ -122,14 +125,14 @@ export default function Navbar() {
           </Popover>
 
           {/* Logo + Desktop Nav */}
-          <div className="flex items-center gap-6">
+          <div  className="flex items-center gap-6">
             <div className="flex gap-2 items-center">
               <Link to="/" className="text-primary hover:text-primary/90">
                 <Logo />
               </Link>
              <h1 className="text-violet-600 md:text-3xl text-2xl font-bold">ZPay</h1>
             </div>
-
+ 
             {/* Desktop navigation menu */}
             <NavigationMenu className="max-md:hidden">
               <NavigationMenuList className="gap-4">
@@ -158,6 +161,7 @@ export default function Navbar() {
 
         {/* Right side (Auth buttons) */}
         <div className="flex items-center gap-2">
+        <ModeToggle/>
           {data?.data?.email ? (
             <Button
               onClick={handleLogout}
@@ -172,6 +176,7 @@ export default function Navbar() {
             </Button>
           )}
         </div>
+       
       </div>
     </header>
     
