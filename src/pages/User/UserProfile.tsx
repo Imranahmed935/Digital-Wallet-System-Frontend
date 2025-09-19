@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Mail, Phone, CalendarDays, Key } from "lucide-react";
 import EditProfile from "@/components/EditProfile";
 import { Skeleton } from "@/components/ui/skeleton";
+import { ChangePassword } from "@/components/ChangePassword";
 
 const UserProfile = () => {
   const { data: user, isLoading, error } = useUserInfoQuery(undefined);
@@ -91,7 +92,7 @@ const UserProfile = () => {
             <div>
               <p className="text-sm text-gray-500 dark:text-foreground">Password</p>
               <p className="font-medium text-gray-900 dark:text-foreground">********</p>
-              <button className="text-blue-500 text-sm mt-1 hover:underline">Change Password</button>
+              <button className="text-blue-500 text-sm mt-1 hover:underline"><ChangePassword/></button>
             </div>
           </div>
         </CardContent>
