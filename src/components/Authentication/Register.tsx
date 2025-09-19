@@ -1,3 +1,4 @@
+import Logo from "@/assets/icon/Logo";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -21,78 +22,62 @@ import { Link, useNavigate } from "react-router";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Password from "../ui/Password";
-import Logo from "@/assets/icon/Logo";
 import { toast } from "sonner";
 import { useRegisterMutation } from "@/redux/features/auth/auth.api";
 
 const registerSchema = z.object({
-  name: z
-    .string()
-    .min(3, { message: "Name is too short" })
-    .max(50, { message: "Name is too long" }),
-  email: z.string().email({ message: "Invalid email address" }),
+  name: z.string().min(3).max(50),
+  email: z.string().email(),
   phone: z.string().regex(/^01[0-9]{9}$/, {
-    message:
-      "Phone must be a valid Bangladeshi number (11 digits starting with 01)",
+    message: "Phone must be a valid Bangladeshi number (11 digits starting with 01)",
   }),
-  role: z.enum(["user", "agent"], { message: "Role must be user or agent" }),
-  password: z.string().min(8, { message: "Password is too short" }),
+  role: z.enum(["user", "agent"]),
+  password: z.string().min(8),
 });
 
-export function Register({
-  className,
-  ...props
-}: React.HTMLAttributes<HTMLDivElement>) {
+export function Register({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
   const [register] = useRegisterMutation();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const form = useForm<z.infer<typeof registerSchema>>({
     resolver: zodResolver(registerSchema),
-    defaultValues: {
-      name: "",
-      email: "",
-      phone: "",
-      role: "user",
-      password: "",
-    },
+    defaultValues: { name: "", email: "", phone: "", role: "user", password: "" },
   });
 
   const onSubmit = async (data: z.infer<typeof registerSchema>) => {
-    const userInfo = {
-      name: data.name,
-      email: data.email,
-      phone: data.phone,
-      role: data.role,
-      password: data.password,
-    };
-
     try {
-       await register(userInfo).unwrap();
-       navigate("/")
-      toast.success("user created successfully!!");
-    } catch (error) {
-      console.error(error);
+      await register(data).unwrap();
+      toast.success("User created successfully!");
+      navigate("/login");
+    } catch (err) {
+      toast.error("Registration failed!");
+      console.error(err);
     }
-
-    console.log(data);
   };
 
   return (
     <div
       className={cn(
-        "min-h-screen flex flex-col justify-center items-center gap-6 p-6",
+        "min-h-screen flex flex-col justify-center items-center p-4",
         className
       )}
       {...props}
     >
-      <div className="flex flex-col items-center gap-2 text-center">
-        <Logo />
-        <h1 className="text-2xl font-bold">Register your zPAY account</h1>
+      {/* Header */}
+      <div className="flex flex-col items-center gap-2 mb-6 text-center">
+        <Logo/>
+        <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
+          Register your zPay account
+        </h1>
+        <p className="text-sm text-gray-500 dark:text-gray-400">
+          Create a new account to get started
+        </p>
       </div>
 
-      <div className="grid gap-6 w-96 mx-auto">
+      {/* Form Card */}
+      <div className="w-full max-w-md bg-white dark:bg-card p-8 space-y-6">
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
             {/* Name */}
             <FormField
               control={form.control}
@@ -116,11 +101,7 @@ export function Register({
                 <FormItem>
                   <FormLabel>Email</FormLabel>
                   <FormControl>
-                    <Input
-                      placeholder="john.doe@company.com"
-                      type="email"
-                      {...field}
-                    />
+                    <Input placeholder="john@example.com" type="email" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -135,7 +116,7 @@ export function Register({
                 <FormItem>
                   <FormLabel>Phone</FormLabel>
                   <FormControl>
-                    <Input placeholder="Enter Phone" type="text" {...field} />
+                    <Input placeholder="01XXXXXXXXX" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -150,16 +131,13 @@ export function Register({
                 <FormItem>
                   <FormLabel>Role</FormLabel>
                   <FormControl>
-                    <Select
-                      onValueChange={field.onChange}
-                      defaultValue={field.value}
-                    >
+                    <Select onValueChange={field.onChange} defaultValue={field.value}>
                       <SelectTrigger className="w-full">
                         <SelectValue placeholder="Select your role" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="agent">Agent</SelectItem>
                         <SelectItem value="user">User</SelectItem>
+                        <SelectItem value="agent">Agent</SelectItem>
                       </SelectContent>
                     </Select>
                   </FormControl>
@@ -183,19 +161,19 @@ export function Register({
               )}
             />
 
-            {/* Submit */}
-            <Button type="submit" className="w-full">
-              Submit
+            <Button type="submit" className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 rounded-lg shadow-md">
+              Register
             </Button>
           </form>
         </Form>
-      </div>
 
-      <div className="text-center text-sm">
-        Already have an account?{" "}
-        <Link to="/login" className="underline underline-offset-4">
-          Login
-        </Link>
+        {/* Footer */}
+        <p className="text-center text-sm text-gray-500 dark:text-gray-400 mt-4">
+          Already have an account?{" "}
+          <Link to="/login" className="text-indigo-600 hover:underline font-medium">
+            Login
+          </Link>
+        </p>
       </div>
     </div>
   );

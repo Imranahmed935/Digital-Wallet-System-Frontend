@@ -15,18 +15,13 @@ import { role } from "@/constant/role";
 
 import {
   authApi,
-
   useLogoutMutation,
-
   useUserInfoQuery,
 } from "@/redux/features/auth/auth.api";
 import { useAppDispatch } from "@/redux/hooks";
 
-
-import { Link, NavLink, useNavigate,  } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { ModeToggle } from "../ModeToggle";
-
-
 
 const navigationLinks = [
   { href: "/", label: "Home", role: "PUBLIC" },
@@ -54,14 +49,19 @@ export default function Navbar() {
   };
 
   const filteredLinks = navigationLinks.filter(
-    (link) => link.role === "PUBLIC" || (data?.data?.role && link.role === data?.data?.role)
+    (link) =>
+      link.role === "PUBLIC" ||
+      (data?.data?.role && link.role === data?.data?.role)
   );
-  
-    if(isLoading){
-    return <h1>loading</h1>
+
+  if (isLoading) {
+    return <h1>loading</h1>;
   }
   return (
-    <header id="nav-menu" className="border-b px-4 md:px-6">
+    <header
+      id="navbar"
+      className="sticky top-0 z-50 border-b bg-white dark:bg-card px-4 md:px-6 shadow-sm"
+    >
       <div className="flex h-16 items-center justify-between gap-4">
         {/* Left side */}
         <div className="flex items-center gap-2">
@@ -73,6 +73,7 @@ export default function Navbar() {
                 variant="ghost"
                 size="icon"
               >
+                {/* Hamburger icon */}
                 <svg
                   className="pointer-events-none"
                   width={16}
@@ -83,7 +84,6 @@ export default function Navbar() {
                   strokeWidth="2"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
                     d="M4 12L20 12"
@@ -125,14 +125,16 @@ export default function Navbar() {
           </Popover>
 
           {/* Logo + Desktop Nav */}
-          <div  className="flex items-center gap-6">
+          <div className="flex items-center gap-6">
             <div className="flex gap-2 items-center">
               <Link to="/" className="text-primary hover:text-primary/90">
                 <Logo />
               </Link>
-             <h1 className="text-violet-600 md:text-3xl text-2xl font-bold">ZPay</h1>
+              <h1 className="text-violet-600 md:text-3xl text-2xl font-bold">
+                ZPay
+              </h1>
             </div>
- 
+
             {/* Desktop navigation menu */}
             <NavigationMenu className="max-md:hidden">
               <NavigationMenuList className="gap-4">
@@ -161,7 +163,9 @@ export default function Navbar() {
 
         {/* Right side (Auth buttons) */}
         <div className="flex items-center gap-2">
-        <ModeToggle/>
+          <div id="theme-toggle">
+            <ModeToggle />
+          </div>
           {data?.data?.email ? (
             <Button
               onClick={handleLogout}
@@ -176,9 +180,7 @@ export default function Navbar() {
             </Button>
           )}
         </div>
-       
       </div>
     </header>
-    
   );
 }

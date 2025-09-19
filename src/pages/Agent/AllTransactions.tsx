@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { useState } from "react";
 import { useAgentTransactionsQuery } from "@/redux/features/agent/agent.api";
 import { useUserInfoQuery } from "@/redux/features/auth/auth.api";
@@ -10,11 +11,11 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const AllTransactions = () => {
   const { data: user } = useUserInfoQuery(undefined);
   const agentId = user?.data?._id;
-
 
   const [page, setPage] = useState(1);
   const [limit] = useState(10);
@@ -27,14 +28,12 @@ const AllTransactions = () => {
     { skip: !agentId }
   );
 
-  if (isLoading) return <p>Loading transactions...</p>;
-  if (error) return <p className="text-red-500">Failed to fetch transactions</p>;
-
   return (
     <div className="p-6">
       <h1 className="text-2xl font-bold mb-4">Agent Transactions</h1>
 
-      <div className="flex gap-3 mb-4">
+      {/* Filters */}
+      <div className="flex gap-3 mb-4 flex-wrap">
         <input
           type="text"
           placeholder="Search..."
@@ -74,7 +73,7 @@ const AllTransactions = () => {
         </select>
       </div>
 
-   
+      {/* Table */}
       <div className="border rounded-lg overflow-hidden">
         <Table>
           <TableHeader>
@@ -87,39 +86,56 @@ const AllTransactions = () => {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {transactions?.data?.length > 0 ? (
-              transactions.data.map((tx: any) => (
-                <TableRow key={tx._id}>
-                  <TableCell className="text-left">
-                    {new Date(tx.createdAt).toLocaleDateString()}
-                  </TableCell>
-                  <TableCell className="capitalize text-left">{tx.type}</TableCell>
-                  <TableCell className="text-left">৳ {tx.amount}</TableCell>
-                  <TableCell className="text-left">৳ {tx.commission}</TableCell>
-                  <TableCell
-                    className={
-                      tx.status === "COMPLETED"
-                        ? "text-green-600 font-medium text-left"
-                        : "text-red-600 font-medium text-left"
-                    }
-                  >
-                    {tx.status}
+            {isLoading
+              ? Array.from({ length: 10 }).map((_, idx) => (
+                  <TableRow key={idx}>
+                    <TableCell><Skeleton className="h-4 w-full" /></TableCell>
+                    <TableCell><Skeleton className="h-4 w-full" /></TableCell>
+                    <TableCell><Skeleton className="h-4 w-full" /></TableCell>
+                    <TableCell><Skeleton className="h-4 w-full" /></TableCell>
+                    <TableCell><Skeleton className="h-4 w-full" /></TableCell>
+                  </TableRow>
+                ))
+              : error
+              ? (
+                <TableRow>
+                  <TableCell colSpan={5} className="text-center py-4 text-red-500">
+                    Failed to fetch transactions
                   </TableCell>
                 </TableRow>
-              ))
-            ) : (
-              <TableRow>
-                <TableCell colSpan={5} className="text-center py-4">
-                  No transactions found
-                </TableCell>
-              </TableRow>
-            )}
+              )
+              : transactions?.data?.length > 0
+              ? transactions.data.map((tx: any) => (
+                  <TableRow key={tx._id}>
+                    <TableCell>{new Date(tx.createdAt).toLocaleDateString()}</TableCell>
+                    <TableCell className="capitalize">{tx.type}</TableCell>
+                    <TableCell>৳ {tx.amount}</TableCell>
+                    <TableCell>৳ {tx.commission}</TableCell>
+                    <TableCell
+                      className={
+                        tx.status === "COMPLETED"
+                          ? "text-green-600 font-medium"
+                          : "text-red-600 font-medium"
+                      }
+                    >
+                      {tx.status}
+                    </TableCell>
+                  </TableRow>
+                ))
+              : (
+                <TableRow>
+                  <TableCell colSpan={5} className="text-center py-4">
+                    No transactions found
+                  </TableCell>
+                </TableRow>
+              )}
           </TableBody>
         </Table>
       </div>
 
+      {/* Pagination */}
       {transactions?.pagination && (
-        <div className="flex gap-4 items-center mt-4">
+        <div className="flex gap-4 items-center mt-4 flex-wrap">
           <button
             disabled={page === 1}
             onClick={() => setPage((prev) => prev - 1)}
@@ -144,3 +160,4 @@ const AllTransactions = () => {
 };
 
 export default AllTransactions;
+

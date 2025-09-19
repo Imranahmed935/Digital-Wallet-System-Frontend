@@ -27,7 +27,7 @@ const features = [
 
 const FastService = () => {
   return (
-    <section className="relative max-w-6xl mx-auto px-4 py-16">
+    <section className="relative max-w-6xl mx-auto px-4 py-16 md:mb-20">
       <h2 className="text-3xl font-bold text-center mb-12">
         Fast & Secure Transactions
       </h2>

@@ -17,11 +17,27 @@ export const userApi = baseApi.injectEndpoints({
       }),
       providesTags: ["Wallet"],
     }),
-    transaction: builder.query({
-      query: ({ page = 1, limit = 10 }) => ({
-        url: `/transactions/me?page=${page}&limit=${limit}`,
-        method: "GET",
-      }),
+    // transaction: builder.query({
+    //   query: ({ page = 1, limit = 10 }) => ({
+    //     url: `/transactions/me?page=${page}&limit=${limit}`,
+    //     method: "GET",
+    //   }),
+    //   providesTags: ["transactions"],
+    // }),
+     Transactions: builder.query({
+      query: ({ page = 1, limit = 10, type, startDate, endDate }) => {
+        const params = new URLSearchParams();
+        params.append("page", page.toString());
+        params.append("limit", limit.toString());
+        if (type) params.append("type", type);
+        if (startDate) params.append("startDate", startDate);
+        if (endDate) params.append("endDate", endDate);
+
+        return {
+          url: `/transactions/me?${params.toString()}`,
+          method: "GET",
+        };
+      },
       providesTags: ["transactions"],
     }),
 
@@ -53,7 +69,7 @@ export const userApi = baseApi.injectEndpoints({
 });
 export const {
   useAddMoneyMutation,
-  useTransactionQuery,
+  useTransactionsQuery,
   useSendMutation,
   useAllWalletQuery,
   useWithdrawMutation,

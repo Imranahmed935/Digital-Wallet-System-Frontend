@@ -10,6 +10,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const Transactions = () => {
   const [filters, setFilters] = useState({
@@ -42,11 +43,11 @@ const Transactions = () => {
     }
   };
 
+  const skeletonRows = Array.from({ length: filters.limit });
+
   return (
     <div className="p-4 md:p-6">
-      <h1 className="text-lg md:text-xl font-bold mb-4">
-        All Transactions
-      </h1>
+      <h1 className="text-lg md:text-xl font-bold mb-4">All Transactions</h1>
 
       {/* Filters */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 mb-6">
@@ -116,50 +117,66 @@ const Transactions = () => {
       </div>
 
       {/* Transaction Table */}
-      {isLoading ? (
-        <p className="text-center text-sm">Loading transactions...</p>
-      ) : error ? (
-        <p className="text-center text-red-500 text-sm">
-          Failed to load transactions
-        </p>
-      ) : transactions.length === 0 ? (
-        <p className="text-center text-sm">No transactions found</p>
-      ) : (
-        <div className="overflow-x-auto">
-          <table className="w-full border-collapse border text-sm md:text-base">
-            <thead className="bg-gray-100 dark:bg-card">
-              <tr>
-                <th className="p-2 text-left border">Date</th>
-                <th className="p-2 text-left border">Type</th>
-                <th className="p-2 text-left border">Status</th>
-                <th className="p-2 text-left border">Amount</th>
-              </tr>
-            </thead>
-            <tbody>
-              {transactions.map((tx: any) => (
-                <tr key={tx._id} className="border-b hover:bg-gray-50">
-                  <td className="p-2 text-left whitespace-nowrap">
-                    {new Date(tx.createdAt).toLocaleString()}
+      <div className="overflow-x-auto">
+        <table className="w-full border-collapse border text-sm md:text-base">
+          <thead className="bg-gray-100 dark:bg-card">
+            <tr>
+              <th className="p-2 text-left border">Date</th>
+              <th className="p-2 text-left border">Type</th>
+              <th className="p-2 text-left border">Status</th>
+              <th className="p-2 text-left border">Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            {isLoading
+              ? skeletonRows.map((_, idx) => (
+                  <tr key={idx} className="border-b">
+                    <td className="p-2"><Skeleton className="h-4 w-32" /></td>
+                    <td className="p-2"><Skeleton className="h-4 w-20" /></td>
+                    <td className="p-2"><Skeleton className="h-4 w-24" /></td>
+                    <td className="p-2"><Skeleton className="h-4 w-16" /></td>
+                  </tr>
+                ))
+              : error
+              ? (
+                <tr>
+                  <td colSpan={4} className="text-center text-red-500">
+                    Failed to load transactions
                   </td>
-                  <td className="p-2 text-left">{tx.type}</td>
-                  <td
-                    className={`p-2 text-left font-medium ${
-                      tx.status === "COMPLETED"
-                        ? "text-green-600"
-                        : tx.status === "FAILED"
-                        ? "text-red-600"
-                        : "text-yellow-600"
-                    }`}
-                  >
-                    {tx.status}
-                  </td>
-                  <td className="p-2 text-left whitespace-nowrap">৳{tx.amount}</td>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
+              )
+              : transactions.length === 0
+              ? (
+                <tr>
+                  <td colSpan={4} className="text-center text-gray-500">
+                    No transactions found
+                  </td>
+                </tr>
+              )
+              : transactions.map((tx: any) => (
+                  <tr key={tx._id} className="border-b hover:bg-gray-50">
+                    <td className="p-2 text-left whitespace-nowrap">
+                      {new Date(tx.createdAt).toLocaleString()}
+                    </td>
+                    <td className="p-2 text-left">{tx.type}</td>
+                    <td
+                      className={`p-2 text-left font-medium ${
+                        tx.status === "COMPLETED"
+                          ? "text-green-600"
+                          : tx.status === "FAILED"
+                          ? "text-red-600"
+                          : "text-yellow-600"
+                      }`}
+                    >
+                      {tx.status}
+                    </td>
+                    <td className="p-2 text-left whitespace-nowrap">৳{tx.amount}</td>
+                  </tr>
+                ))
+            }
+          </tbody>
+        </table>
+      </div>
 
       {/* ShadCN Pagination */}
       {meta.pages > 1 && (
@@ -169,18 +186,11 @@ const Transactions = () => {
               <PaginationItem>
                 <PaginationPrevious
                   onClick={() => handlePageChange(meta.page - 1)}
-                  className={
-                    meta.page === 1
-                      ? "pointer-events-none opacity-50"
-                      : "cursor-pointer"
-                  }
+                  className={meta.page === 1 ? "pointer-events-none opacity-50" : "cursor-pointer"}
                 />
               </PaginationItem>
 
-              {Array.from(
-                { length: meta.pages },
-                (_, index) => index + 1
-              ).map((page) => (
+              {Array.from({ length: meta.pages }, (_, index) => index + 1).map((page) => (
                 <PaginationItem key={page}>
                   <PaginationLink
                     isActive={meta.page === page}
@@ -194,11 +204,7 @@ const Transactions = () => {
               <PaginationItem>
                 <PaginationNext
                   onClick={() => handlePageChange(meta.page + 1)}
-                  className={
-                    meta.page === meta.pages
-                      ? "pointer-events-none opacity-50"
-                      : "cursor-pointer"
-                  }
+                  className={meta.page === meta.pages ? "pointer-events-none opacity-50" : "cursor-pointer"}
                 />
               </PaginationItem>
             </PaginationContent>

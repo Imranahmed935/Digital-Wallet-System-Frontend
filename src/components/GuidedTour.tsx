@@ -1,98 +1,63 @@
-// /* eslint-disable @typescript-eslint/no-explicit-any */
-// import { useEffect, useState } from "react";
-// import { useLocation, useNavigate } from "react-router-dom";
-// import Joyride, {type Step, STATUS } from "react-joyride";
+import { useState, useEffect } from "react";
+import Joyride, { STATUS, type CallBackProps, type Step } from "react-joyride";
 
-// const GuidedTour = () => {
-//   const [run, setRun] = useState(false);
-//   const [stepIndex, setStepIndex] = useState(0);
-//   const [currentSteps, setCurrentSteps] = useState<Step[]>([]);
-//   const location = useLocation();
-//   const navigate = useNavigate();
+interface GuidedTourProps {
+  userEmail?: string;
+  usersLoaded?: boolean;
+  agentsLoaded?: boolean;
+  transactionsLoaded?: boolean;
+}
 
-//   // All steps grouped by route
-//   const stepsByRoute: Record<string, Step[]> = {
-//     "/": [
-//       { target: "#nav-menu", content: "This is the navigation menu.", placement: "bottom" },
-//       { target: "#dashboard-stats", content: "Check your stats here.", placement: "top" },
-//     ],
-//     "/feature": [
-//       { target: "#feature-section", content: "Explore features here.", placement: "bottom" },
-//     ],
-//     "/pricing": [
-//       { target: "#pricing-section", content: "Check pricing plans here.", placement: "top" },
-//     ],
-//     "/about": [
-//       { target: "#about-section", content: "Learn more about us.", placement: "top" },
-//     ],
-//     "/faq": [
-//       { target: "#faq-section", content: "Find answers to FAQs.", placement: "bottom" },
-//     ],
-//     "/contact": [
-//       { target: "#contact-form", content: "Use this form to get in touch.", placement: "left" },
-//     ],
-//   };
+const GuidedTour = ({
+  userEmail,
+  usersLoaded = false,
+  agentsLoaded = false,
+  transactionsLoaded = false,
+}: GuidedTourProps) => {
+  const [run, setRun] = useState(false);
+  const storageKey = `walletTourDone_${userEmail || "guest"}`;
 
-//   // Initialize tour
-//   useEffect(() => {
-//     const hasSeen = localStorage.getItem("multi-page-tour-seen");
-//     if (!hasSeen) {
-//       setRun(true);
-//       setStepIndex(0);
-//       setCurrentSteps(stepsByRoute[location.pathname] || []);
-//     }
-//   }, []);
+  const steps: Step[] = [
+    { target: "#theme-toggle", content: "Switch between light and dark mode here.", placement: "bottom" },
+    { target: "#user-analytics", content: "Here you can check user analytics.", placement: "top" },
+    { target: "#admin-analytics", content: "This section shows admin analytics.", placement: "top" },
+    { target: "#agent-analytics", content: "Here’s the agent analytics overview.", placement: "top" },
+    { target: "#navbar", content: "Use the navbar to navigate across the system.", placement: "bottom" },
+  ];
 
-//   // Update steps when route changes
-//   useEffect(() => {
-//     if (run) {
-//       setCurrentSteps(stepsByRoute[location.pathname] || []);
-//       setStepIndex(0);
-//     }
-//   }, [location.pathname, run]);
+  useEffect(() => {
+    if (!userEmail) return;
+    if (usersLoaded && agentsLoaded && transactionsLoaded) {
+      const tourDone = localStorage.getItem(storageKey);
+      if (!tourDone) setRun(true);
+    }
+  }, [userEmail, usersLoaded, agentsLoaded, transactionsLoaded, storageKey]);
 
-//   const handleCallback = (data: any) => {
-//     const { status, action, index } = data;
+  const handleJoyrideCallback = (data: CallBackProps) => {
+    const { status } = data;
 
-//     if (status === STATUS.SKIPPED || status === STATUS.FINISHED) {
-//       localStorage.setItem("multi-page-tour-seen", "true");
-//       setRun(false);
-//       setStepIndex(0);
-//       return;
-//     }
+    if (status === STATUS.FINISHED || status === STATUS.SKIPPED) {
+      setRun(false);
+      localStorage.setItem(storageKey, "true");
+    }
+  };
 
-//     if (action === "next") {
-//       // Navigate to next route when last step of current page finishes
-//       const routeKeys = Object.keys(stepsByRoute);
-//       const currentStepsCount = (stepsByRoute[location.pathname] || []).length;
-//       if (index === currentStepsCount - 1) {
-//         const nextRouteIndex = routeKeys.indexOf(location.pathname) + 1;
-//         if (nextRouteIndex < routeKeys.length) {
-//           navigate(routeKeys[nextRouteIndex]);
-//         }
-//       }
-//     }
+  return (
+    <Joyride
+      steps={steps}
+      run={run}
+      continuous
+      showSkipButton
+      showProgress
+      callback={handleJoyrideCallback}
+      styles={{
+        options: {
+          zIndex: 10000,
+          primaryColor: "#4f46e5",
+        },
+      }}
+    />
+  );
+};
 
-//     setStepIndex(index + 1);
-//   };
-
-//   return (
-//     <Joyride
-//       steps={currentSteps}
-//       run={run}
-//       stepIndex={stepIndex}
-//       continuous
-//       scrollToFirstStep
-//       showSkipButton
-//       showProgress
-//       disableOverlayClose
-//       callback={handleCallback}
-//       styles={{
-//         options: { primaryColor: "#8b5cf6", zIndex: 99999 },
-//         tooltip: { borderRadius: "12px", padding: "16px" },
-//       }}
-//     />
-//   );
-// };
-
-// export default GuidedTour;
+export default GuidedTour;
