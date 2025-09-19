@@ -41,7 +41,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact-form" className="py-20">
+    <section id="contact-form" className="py-20 md:w-7/12 mx-auto">
       <div className="px-4 space-y-16">
         {/* Heading */}
         <div className="text-center">

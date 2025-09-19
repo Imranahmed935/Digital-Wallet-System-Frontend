@@ -104,7 +104,7 @@ const UserAnalytics = () => {
         {[ArrowDownCircle, ArrowUpCircle, Wallet].map((Icon, idx) => (
           <Card
             key={idx}
-            className="bg-violet-100 rounded-2xl shadow-sm dark:bg-card dark:border-violet-600"
+            className="bg-violet-100 w-full rounded-2xl shadow-sm dark:bg-card dark:border-violet-600"
           >
             <CardContent className="flex flex-col items-center justify-center py-6">
               {loading ? (
@@ -114,7 +114,7 @@ const UserAnalytics = () => {
               )}
 
               {loading ? (
-                <Skeleton className="h-4 w-24 mt-2" />
+                <Skeleton className="h-4 w-10 mt-2" />
               ) : idx === 0 ? (
                 <WithdrawModal />
               ) : idx === 1 ? (

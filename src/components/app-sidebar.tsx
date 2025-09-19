@@ -34,7 +34,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           {navItems.map((section) => (
             <SidebarGroup key={section.title}>
               <SidebarGroupContent>
-                <SidebarMenu>
+                <SidebarMenu className="md:ml-17 ml-22">
                   {section.items.map((item) => (
                     <SidebarMenuItem key={item.title}>
                       <SidebarMenuButton asChild>
@@ -49,7 +49,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </div>
 
         {/* Bottom Home link */}
-        <div className=" ml-2">
+        <div className=" md:ml-19 ml-24">
           <SidebarMenu>
             <SidebarMenuItem>
               <SidebarMenuButton asChild>

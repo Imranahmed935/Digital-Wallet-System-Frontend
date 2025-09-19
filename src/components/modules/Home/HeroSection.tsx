@@ -30,8 +30,8 @@ export function HeroSection({
   },
 }: HeroSectionProps) {
   return (
-    <section className="bg-background py-20 lg:py-32">
-      <div className="container flex flex-col items-center gap-10 lg:flex-row">
+    <section className="bg-background py-20 lg:py-32 px-4">
+      <div className="container mx-auto flex flex-col items-center gap-10 lg:flex-row">
         {/* Text Content */}
         <div className="flex flex-col gap-7 lg:w-2/3">
           <h2 className="text-5xl font-semibold text-foreground md:text-5xl lg:text-8xl">

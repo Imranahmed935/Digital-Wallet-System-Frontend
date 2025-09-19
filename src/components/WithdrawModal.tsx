@@ -37,7 +37,7 @@ export function WithdrawModal() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline">Withdraw Money</Button>
+        <Button variant="outline">Withdraw</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>

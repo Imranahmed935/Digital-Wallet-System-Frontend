@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -31,8 +32,7 @@ export function Modal() {
      
       form.reset();
     } catch (error) {
-      console.error(error);
-      alert("Failed to add money");
+      toast.error("Failed to add money");
     }
   };
 

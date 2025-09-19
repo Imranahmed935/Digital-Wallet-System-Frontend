@@ -37,7 +37,7 @@ const About = () => {
   ];
 
   return (
-    <section className="py-20">
+    <section className="py-20 md:w-7/12 mx-auto">
       <div className="container mx-auto space-y-32">
 
         <div className="grid gap-5 text-center md:grid-cols-2 md:text-left mb-14">

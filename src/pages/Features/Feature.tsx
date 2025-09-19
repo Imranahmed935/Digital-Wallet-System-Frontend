@@ -75,7 +75,7 @@ const ZPayFeatures: FeatureItem[] = [
 
 const Feature = () => {
   return (
-    <section id="feature-section" className="py-20">
+    <section id="feature-section" className="py-20 md:w-7/12 mx-auto">
       <div>
         {/* Heading */}
         <div className="text-center mb-14">
