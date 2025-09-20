@@ -1,25 +1,39 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { useAllAgentsQuery, useAllTransactionsQuery, useAllUsersQuery } from "@/redux/features/admin/admin.api";
+import {
+  useAllAgentsQuery,
+  useAllTransactionsQuery,
+  useAllUsersQuery,
+} from "@/redux/features/admin/admin.api";
 import { User, Users, Wallet, Settings } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 import GuidedTour from "@/components/GuidedTour";
+import DailyTransactionChart from "@/components/DailyTransactionsChart";
+import DailyUsers from "@/components/DailyUsers";
 
 const AdminAnalytics = () => {
   const { data: users, isLoading: usersLoading } = useAllUsersQuery(undefined);
-  const { data: agents, isLoading: agentsLoading } = useAllAgentsQuery(undefined);
-  const { data: transactions, isLoading: transactionsLoading } = useAllTransactionsQuery(undefined);
-
+  const { data: agents, isLoading: agentsLoading } =
+    useAllAgentsQuery(undefined);
+  const { data: transactions, isLoading: transactionsLoading } =
+    useAllTransactionsQuery(undefined);
+  const dailyData = transactions?.data.dailyTransactions;
+   const dailyUser = users?.data.dailyUsers;
   const loading = usersLoading || agentsLoading || transactionsLoading;
 
   return (
-    <div id="admin-analytics" className="min-h-screen p-4 sm:p-6 md:p-8 space-y-6">
-      <GuidedTour/>
+    <div
+      id="admin-analytics"
+      className="min-h-screen p-4 sm:p-6 md:p-8 space-y-6"
+    >
+      <GuidedTour />
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3">
         {loading ? (
           <Skeleton className="h-8 w-64 rounded" />
         ) : (
-          <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 dark:text-foreground">Admin Dashboard</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 dark:text-foreground">
+            Admin Dashboard
+          </h1>
         )}
 
         {loading ? (
@@ -38,11 +52,15 @@ const AdminAnalytics = () => {
           <CardContent className="flex items-center gap-3 p-4">
             <User className="w-6 h-6 text-blue-500" />
             <div>
-              <p className="text-sm text-gray-500 dark:text-foreground">Total Users</p>
+              <p className="text-sm text-gray-500 dark:text-foreground">
+                Total Users
+              </p>
               {loading ? (
                 <Skeleton className="h-6 w-16 mt-1 rounded" />
               ) : (
-                <p className="text-lg font-bold text-gray-800 dark:text-muted-foreground">{users?.data?.length}</p>
+                <p className="text-lg font-bold text-gray-800 dark:text-muted-foreground text-center">
+                  {users?.data.users.length}
+                </p>
               )}
             </div>
           </CardContent>
@@ -53,11 +71,15 @@ const AdminAnalytics = () => {
           <CardContent className="flex items-center gap-3 p-4">
             <Users className="w-6 h-6 text-green-500" />
             <div>
-              <p className="text-sm text-gray-500 dark:text-foreground">Total Agents</p>
+              <p className="text-sm text-gray-500 dark:text-foreground">
+                Total Agents
+              </p>
               {loading ? (
                 <Skeleton className="h-6 w-16 mt-1 rounded" />
               ) : (
-                <p className="text-lg font-bold text-gray-800 dark:text-muted-foreground">{agents?.data?.length}</p>
+                <p className="text-lg font-bold text-gray-800 dark:text-muted-foreground text-center">
+                  {agents?.data?.length}
+                </p>
               )}
             </div>
           </CardContent>
@@ -68,11 +90,15 @@ const AdminAnalytics = () => {
           <CardContent className="flex items-center gap-3 p-4">
             <Wallet className="w-6 h-6 text-red-500" />
             <div>
-              <p className="text-sm text-gray-500 dark:text-foreground">Transactions</p>
+              <p className="text-sm text-gray-500 dark:text-foreground">
+                Transactions
+              </p>
               {loading ? (
                 <Skeleton className="h-6 w-16 mt-1 rounded" />
               ) : (
-                <p className="text-lg font-bold text-gray-800 dark:text-muted-foreground">{transactions?.meta?.total}</p>
+                <p className="text-lg font-bold text-gray-800 dark:text-muted-foreground text-center">
+                  {transactions?.meta?.total}
+                </p>
               )}
             </div>
           </CardContent>
@@ -83,15 +109,25 @@ const AdminAnalytics = () => {
           <CardContent className="flex items-center gap-3 p-4">
             <Settings className="w-6 h-6 text-yellow-500" />
             <div>
-              <p className="text-sm text-gray-500 dark:text-foreground">Transaction Volume</p>
+              <p className="text-sm text-gray-500 dark:text-foreground">
+                Transaction Volume
+              </p>
               {loading ? (
                 <Skeleton className="h-6 w-20 mt-1 rounded" />
               ) : (
-                <p className="text-lg font-bold text-gray-800 dark:text-muted-foreground">৳ 5,000,000</p>
+                <p className="text-lg font-bold text-gray-800 dark:text-muted-foreground">
+                  ৳ 5,000,000
+                </p>
               )}
             </div>
           </CardContent>
         </Card>
+      </div>
+      <div>
+        <DailyTransactionChart data={dailyData} />
+      </div>
+      <div>
+        <DailyUsers data={dailyUser}/>
       </div>
     </div>
   );

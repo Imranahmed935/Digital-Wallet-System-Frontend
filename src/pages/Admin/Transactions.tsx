@@ -27,6 +27,8 @@ const Transactions = () => {
   const transactions = data?.data || [];
   const meta = data?.meta || { total: 0, page: 1, limit: 10, pages: 1 };
 
+  console.log(transactions)
+
   useEffect(() => {
     refetch();
   }, [filters, refetch]);
@@ -145,7 +147,7 @@ const Transactions = () => {
                   </td>
                 </tr>
               )
-              : transactions.length === 0
+              : transactions?.transactions.length === 0
               ? (
                 <tr>
                   <td colSpan={4} className="text-center text-gray-500">
@@ -153,7 +155,7 @@ const Transactions = () => {
                   </td>
                 </tr>
               )
-              : transactions.map((tx: any) => (
+              : transactions?.transactions.map((tx: any) => (
                   <tr key={tx._id} className="border-b hover:bg-gray-50">
                     <td className="p-2 text-left whitespace-nowrap">
                       {new Date(tx.createdAt).toLocaleString()}

@@ -51,7 +51,7 @@ const Profile = () => {
           {isLoading ? (
             <Skeleton className="h-6 w-48 rounded" />
           ) : (
-            <CardTitle className="text-3xl font-bold text-gray-900">
+            <CardTitle className="text-3xl font-bold dark:text-foreground text-gray-900">
               {user?.name}
             </CardTitle>
           )}
