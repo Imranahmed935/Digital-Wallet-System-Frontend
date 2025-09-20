@@ -31,7 +31,7 @@ const Faq3 = ({
   supportButtonUrl,
 }: Faq3Props) => {
   return (
-    <section id="faq-section" className="py-32 md:w-10/12 mx-auto">
+    <section id="faq-section" className="py-20 md:w-10/12 mx-auto px-4">
       <div className="container space-y-10">
         <div className="mx-auto flex max-w-3xl flex-col text-left md:text-center">
           <h2 className="mb-3 text-3xl font-semibold md:mb-4 lg:mb-6 lg:text-4xl">

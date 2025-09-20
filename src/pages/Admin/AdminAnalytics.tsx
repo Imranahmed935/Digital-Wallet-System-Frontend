@@ -8,16 +8,21 @@ import { User, Users, Wallet, Settings } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 import GuidedTour from "@/components/GuidedTour";
 import DailyTransactionChart from "@/components/DailyTransactionsChart";
+import DailyAgents from "@/components/DailyAgents";
 import DailyUsers from "@/components/DailyUsers";
 
 const AdminAnalytics = () => {
   const { data: users, isLoading: usersLoading } = useAllUsersQuery(undefined);
   const { data: agents, isLoading: agentsLoading } =
     useAllAgentsQuery(undefined);
+    
   const { data: transactions, isLoading: transactionsLoading } =
     useAllTransactionsQuery(undefined);
+
   const dailyData = transactions?.data.dailyTransactions;
-   const dailyUser = users?.data.dailyUsers;
+  const dailyUser = users?.data.dailyUsers;
+  const dailyAgents = agents?.data.dailyAgents;
+
   const loading = usersLoading || agentsLoading || transactionsLoading;
 
   return (
@@ -46,7 +51,7 @@ const AdminAnalytics = () => {
       </div>
 
       {/* Overview Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {/* Total Users */}
         <Card className="bg-white dark:bg-card border-violet-600 rounded-xl">
           <CardContent className="flex items-center gap-3 p-4">
@@ -78,7 +83,7 @@ const AdminAnalytics = () => {
                 <Skeleton className="h-6 w-16 mt-1 rounded" />
               ) : (
                 <p className="text-lg font-bold text-gray-800 dark:text-muted-foreground text-center">
-                  {agents?.data?.length}
+                  {agents?.data.agents.length}
                 </p>
               )}
             </div>
@@ -123,11 +128,12 @@ const AdminAnalytics = () => {
           </CardContent>
         </Card>
       </div>
-      <div>
+      <div className="mt-16">
         <DailyTransactionChart data={dailyData} />
       </div>
-      <div>
-        <DailyUsers data={dailyUser}/>
+      <div className="md:flex gap-4 py-10">
+        <DailyUsers dataUser={dailyUser} />
+        <DailyAgents data={dailyAgents}/>
       </div>
     </div>
   );

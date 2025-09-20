@@ -249,7 +249,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <p className="text-xs text-gray-500 dark:text-foreground">
+        <p className="text-xs text-center text-gray-500 dark:text-foreground">
           &copy; 2025. Company <span className="text-violet-600">ZPay</span>. All rights reserved.
         </p>
       </div>

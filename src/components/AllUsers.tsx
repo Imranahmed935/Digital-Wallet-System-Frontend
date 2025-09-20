@@ -57,7 +57,7 @@ export default function AllUsers() {
                 </TableCell>
               </TableRow>
             )
-            : users?.data.map((user: {
+            : users?.data.users.map((user: {
                 _id: string;
                 name: string;
                 email: string;

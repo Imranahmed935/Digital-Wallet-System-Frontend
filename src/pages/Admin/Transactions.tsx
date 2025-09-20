@@ -27,8 +27,6 @@ const Transactions = () => {
   const transactions = data?.data || [];
   const meta = data?.meta || { total: 0, page: 1, limit: 10, pages: 1 };
 
-  console.log(transactions)
-
   useEffect(() => {
     refetch();
   }, [filters, refetch]);

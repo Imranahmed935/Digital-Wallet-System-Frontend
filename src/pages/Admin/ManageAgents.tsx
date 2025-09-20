@@ -57,7 +57,7 @@ export default function ManageAgents() {
                 </TableCell>
               </TableRow>
             )
-            : agents?.data.map((agent: { _id: string; name: string; email: string; phone: string; isActive: boolean }) => (
+            : agents?.data.agents.map((agent: { _id: string; name: string; email: string; phone: string; isActive: boolean }) => (
                 <TableRow key={agent._id}>
                   <TableCell className="text-left">{agent.name}</TableCell>
                   <TableCell className="text-left">{agent.email}</TableCell>

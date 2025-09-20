@@ -17,7 +17,6 @@ const AgentAnalytics = () => {
     { id: agentId },
     { skip: !agentId }
   );
-  console.log(transactions)
   const cashInTotal = transactions?.data
     ?.filter((tx: any) => tx.type === "CASH_IN" && tx.status === "COMPLETED")
     .reduce((sum: number, tx: any) => sum + tx.amount, 0);
