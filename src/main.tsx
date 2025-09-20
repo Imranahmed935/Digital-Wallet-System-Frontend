@@ -8,9 +8,6 @@ import { store } from "./redux/store.ts";
 import { Toaster } from "sonner";
 import { ThemeProvider } from "./providers/theme.provider.tsx";
 
- if (process.env.NODE_ENV === "production") {
-  console.error = () => {};
-}
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <Provider store={store}>

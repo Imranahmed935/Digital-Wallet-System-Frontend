@@ -60,9 +60,9 @@ export default function Navbar() {
   return (
     <header
       id="navbar"
-      className="sticky top-0 z-50 border-b bg-white dark:bg-card px-2 md:px-6 shadow-sm md:w-10/12 w-full mx-auto"
+      className="sticky top-0 z-50  px-2 md:px-6 w-full backdrop-blur-2xl"
     >
-      <div className="flex h-16 items-center justify-between gap-4">
+      <div className="flex h-16 items-center justify-between gap-4 container mx-auto">
         {/* Left side */}
         <div className="flex items-center gap-2">
           {/* Mobile menu trigger */}
