@@ -11,7 +11,6 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { role } from "@/constant/role";
 
 import {
   authApi,
@@ -22,12 +21,13 @@ import { useAppDispatch } from "@/redux/hooks";
 
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { ModeToggle } from "../ModeToggle";
+import { role } from "@/constant/role";
 
 const navigationLinks = [
   { href: "/", label: "Home", role: "PUBLIC" },
-  { href: "/admin", label: "Dashboard", role: role.admin },
-  { href: "/agent", label: "Dashboard", role: role.agent },
-  { href: "/user", label: "Dashboard", role: role.user },
+  { href: "/admin", label: "Dashboard", role: role?.admin },
+  { href: "/agent", label: "Dashboard", role: role?.agent },
+  { href: "/user", label: "Dashboard", role: role?.user },
   { href: "/feature", label: "Features", role: "PUBLIC" },
   { href: "/pricing", label: "Pricing", role: "PUBLIC" },
   { href: "/about", label: "About", role: "PUBLIC" },
@@ -62,7 +62,7 @@ export default function Navbar() {
     >
      <div className="flex h-16 items-center justify-between gap-4 container mx-auto">
         <div className="flex items-center gap-2">
-     
+
           <Popover>
             <PopoverTrigger asChild>
               <Button

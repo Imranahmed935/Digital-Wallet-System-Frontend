@@ -11,7 +11,7 @@ import { SendModal } from "@/components/SendModal";
 import { useUserInfoQuery } from "@/redux/features/auth/auth.api";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Skeleton } from "@/components/ui/skeleton";
-import GuidedTour from "@/components/GuidedTour";
+
 
 const UserAnalytics = () => {
   const [currentPage] = useState(1);
@@ -182,7 +182,7 @@ const UserAnalytics = () => {
           </Table>
         </div>
       </div>
-       <GuidedTour/>
+
     </div>
   );
 };

@@ -6,7 +6,6 @@ import { useAgentTransactionsQuery } from "@/redux/features/agent/agent.api";
 import { useUserInfoQuery } from "@/redux/features/auth/auth.api";
 import { ArrowDownCircle, ArrowUpCircle, User, Wallet } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
-import GuidedTour from "@/components/GuidedTour";
 
 const AgentAnalytics = () => {
   const { data: user, isLoading: userLoading } = useUserInfoQuery(undefined);
@@ -36,8 +35,6 @@ const AgentAnalytics = () => {
 
   return (
     <div id="agent-analytics" className="min-h-screen p-4 sm:p-6 md:p-8 space-y-6">
-      <GuidedTour />
-      {/* Header */}
       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3">
         <h1 className="text-2xl sm:text-3xl font-bold dark:text-foreground text-gray-800">
           {loading ? <Skeleton className="h-8 w-48" /> : "Agent Dashboard"}
@@ -47,7 +44,7 @@ const AgentAnalytics = () => {
         </p>
       </div>
 
-      {/* Analytics Cards */}
+ 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
         {[{
           label: "Cash In",

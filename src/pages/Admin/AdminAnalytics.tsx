@@ -6,7 +6,6 @@ import {
 } from "@/redux/features/admin/admin.api";
 import { User, Users, Wallet, Settings } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
-import GuidedTour from "@/components/GuidedTour";
 import DailyTransactionChart from "@/components/DailyTransactionsChart";
 import DailyAgents from "@/components/DailyAgents";
 import DailyUsers from "@/components/DailyUsers";
@@ -30,8 +29,6 @@ const AdminAnalytics = () => {
       id="admin-analytics"
       className="min-h-screen p-4 sm:p-6 md:p-8 space-y-6"
     >
-      <GuidedTour />
-      {/* Header */}
       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3">
         {loading ? (
           <Skeleton className="h-8 w-64 rounded" />
