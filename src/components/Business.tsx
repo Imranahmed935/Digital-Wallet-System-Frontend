@@ -52,7 +52,7 @@ const Business = () => {
       </p>
 
       <div className="grid md:grid-cols-3 gap-6">
-        {/* Left Big Card */}
+
         <Card className="md:col-span-2 shadow-md">
           <img
             src={blogs[0].image}
@@ -68,7 +68,6 @@ const Business = () => {
           </CardContent>
         </Card>
 
-        {/* Right Small Cards */}
         <div className="grid gap-4">
           {blogs.slice(1).map((blog) => (
             <Card key={blog.id} className="flex items-center gap-3 shadow-sm">
