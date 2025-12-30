@@ -43,7 +43,6 @@ const Contact = () => {
   return (
     <section id="contact-form" className="py-20 md:w-7/12 mx-auto">
       <div className="px-4 space-y-16">
-        {/* Heading */}
         <div className="text-center">
           <h1 className="text-4xl font-bold mb-4">Contact with <span className="text-violet-600">ZPay's</span></h1>
           <p className="text-gray-600 max-w-xl mx-auto dark:text-foreground">
