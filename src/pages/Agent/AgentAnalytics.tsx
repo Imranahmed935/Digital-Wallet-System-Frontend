@@ -1,4 +1,3 @@
-
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { AgentAddMoneyModal } from "@/components/AgentAddMoneyModal";
 import { AgentWithdrawModal } from "@/components/AgentWithDrawModal";
@@ -17,6 +16,7 @@ const AgentAnalytics = () => {
     { id: agentId },
     { skip: !agentId }
   );
+
   const cashInTotal = transactions?.data
     ?.filter((tx: any) => tx.type === "CASH_IN" && tx.status === "COMPLETED")
     .reduce((sum: number, tx: any) => sum + tx.amount, 0);
@@ -36,7 +36,7 @@ const AgentAnalytics = () => {
 
   return (
     <div id="agent-analytics" className="min-h-screen p-4 sm:p-6 md:p-8 space-y-6">
-      <GuidedTour/>
+      <GuidedTour />
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3">
         <h1 className="text-2xl sm:text-3xl font-bold dark:text-foreground text-gray-800">
@@ -170,4 +170,3 @@ const AgentAnalytics = () => {
 };
 
 export default AgentAnalytics;
-

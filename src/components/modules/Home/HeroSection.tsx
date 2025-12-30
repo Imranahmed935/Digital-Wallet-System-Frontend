@@ -1,68 +1,60 @@
-import hero from "../../../assets/send/Send-Money.png"
+import hero from "../../../assets/send/Send-Money.png";
 
 interface HeroSectionProps {
   heading?: string;
   subheading?: string;
   description?: string;
-  image?: {
-    src: string;
-    alt: string;
-  };
-  buttons?: {
-    primary?: {
-      text: string;
-      url: string;
-    };
-    secondary?: {
-      text: string;
-      url: string;
-    };
-  };
 }
 
 export function HeroSection({
   heading = "ZPay",
-  subheading = "isn’t just a digital wallet—it’s freedom in your pocket.",
-  description = "We believe money should move as fast as you do!",
-  image = {
-    src:`${hero}`,
-    alt: "Placeholder",
-  },
+  subheading = "isn’t just a digital wallet — it’s freedom in your pocket.",
+  description = "We believe money should move as fast as you do.",
 }: HeroSectionProps) {
   return (
-    <section className="bg-background py-20 lg:py-32 px-4">
-      <div className="container mx-auto flex flex-col items-center gap-10 lg:flex-row">
-        {/* Text Content */}
-        <div className="flex flex-col gap-7 lg:w-2/3">
-          <h2 className="text-5xl font-semibold text-foreground md:text-5xl lg:text-8xl">
-            <span>{heading}</span>{" "}
-            <span className="text-muted-foreground ">{subheading}</span>
-          </h2>
-          <p className="text-base text-pink-600 md:text-lg lg:text-xl">
-            {description}
-          </p>
+    <section className="relative overflow-hidden bg-background py-20 lg:py-32">
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute -top-24 -left-24 h-72 w-72 rounded-full bg-pink-500/30 blur-3xl dark:bg-pink-600/20" />
+        <div className="absolute top-1/3 -right-24 h-96 w-96 rounded-full bg-purple-500/30 blur-3xl dark:bg-purple-600/20" />
+        <div className="absolute bottom-0 left-1/2 h-80 w-80 -translate-x-1/2 rounded-full bg-indigo-500/20 blur-3xl dark:bg-indigo-600/20" />
+      </div>
 
-          {/* Buttons */}
-          <div className="flex flex-wrap items-start gap-5 lg:gap-7">
+      <div className="container relative z-10 mx-auto px-4">
+        <div className="flex flex-col items-center gap-16 lg:flex-row">
+      
+          <div className="flex flex-col gap-8 text-center lg:w-1/2 lg:text-left">
+            <h1 className="text-4xl font-extrabold leading-tight md:text-6xl lg:text-7xl">
+              <span className="bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 bg-clip-text text-transparent">
+                {heading}
+              </span>{" "}
+              <span className="text-foreground">{subheading}</span>
+            </h1>
+
+            <p className="max-w-xl text-base text-muted-foreground md:text-lg">
+              {description}
+            </p>
+
+         
+            <div className="flex flex-wrap items-center justify-center gap-5 lg:justify-start">
+              <button className="relative rounded-full bg-gradient-to-r from-pink-500 to-purple-600 px-8 py-4 font-semibold text-white shadow-lg shadow-pink-500/40 transition hover:scale-105 hover:shadow-pink-500/60">
+                Get Started
+              </button>
+
+              <button className="rounded-full border border-border bg-background px-8 py-4 font-semibold text-foreground backdrop-blur transition hover:bg-muted">
+                Learn More
+              </button>
+            </div>
           </div>
-        </div>
 
-        {/* Image Section */}
-        <div className="relative z-10">
-          <div className="absolute top-2.5 left-1/2 h-[92%] w-[69%] -translate-x-[52%] overflow-hidden rounded-[35px]">
+          <div className="relative lg:w-1/2 flex justify-center">
+            <div className="absolute h-[420px] w-[320px] rounded-3xl bg-gradient-to-b from-pink-500/40 to-purple-600/40 blur-2xl" />
+
             <img
-              src={image.src}
-              alt={image.alt}
-              className="size-full object-cover "
+              src={hero}
+              alt="ZPay App"
+              className="relative z-10 rounded-3xl transition hover:scale-105"
             />
           </div>
-          <img
-            className="relative z-10"
-            src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/mockups/phone-2.png"
-            width={450}
-            height={889}
-            alt="iphone"
-          />
         </div>
       </div>
     </section>

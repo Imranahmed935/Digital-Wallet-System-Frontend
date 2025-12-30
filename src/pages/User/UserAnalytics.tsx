@@ -25,6 +25,7 @@ const UserAnalytics = () => {
     limit,
   });
 
+
   const loading = walletLoading || userLoading || txLoading;
   const walletBalance = data?.data.balance || 0;
 

@@ -63,7 +63,7 @@ export function Register({ className, ...props }: React.HTMLAttributes<HTMLDivEl
       )}
       {...props}
     >
-      {/* Header */}
+
       <div className="flex flex-col items-center gap-2 mb-6 text-center">
         <Logo/>
         <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
@@ -74,11 +74,10 @@ export function Register({ className, ...props }: React.HTMLAttributes<HTMLDivEl
         </p>
       </div>
 
-      {/* Form Card */}
+ 
       <div className="w-full max-w-md bg-white dark:bg-card p-8 space-y-6">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-            {/* Name */}
             <FormField
               control={form.control}
               name="name"
@@ -93,7 +92,7 @@ export function Register({ className, ...props }: React.HTMLAttributes<HTMLDivEl
               )}
             />
 
-            {/* Email */}
+
             <FormField
               control={form.control}
               name="email"
@@ -108,7 +107,6 @@ export function Register({ className, ...props }: React.HTMLAttributes<HTMLDivEl
               )}
             />
 
-            {/* Phone */}
             <FormField
               control={form.control}
               name="phone"
@@ -122,8 +120,6 @@ export function Register({ className, ...props }: React.HTMLAttributes<HTMLDivEl
                 </FormItem>
               )}
             />
-
-            {/* Role */}
             <FormField
               control={form.control}
               name="role"
@@ -146,7 +142,6 @@ export function Register({ className, ...props }: React.HTMLAttributes<HTMLDivEl
               )}
             />
 
-            {/* Password */}
             <FormField
               control={form.control}
               name="password"
@@ -167,7 +162,6 @@ export function Register({ className, ...props }: React.HTMLAttributes<HTMLDivEl
           </form>
         </Form>
 
-        {/* Footer */}
         <p className="text-center text-sm text-gray-500 dark:text-gray-400 mt-4">
           Already have an account?{" "}
           <Link to="/login" className="text-indigo-600 hover:underline font-medium">
