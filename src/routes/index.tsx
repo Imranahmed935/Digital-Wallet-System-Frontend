@@ -5,7 +5,6 @@ import DashboardLayout from "@/components/Layouts/DashboardLayout";
 
 import About from "@/pages/About/About";
 import Contact from "@/pages/Contact/Contact";
-import Faq from "@/pages/FAQ/Faq";
 import Feature from "@/pages/Features/Feature";
 import HomePage from "@/pages/Home/HomePage";
 import Pricing from "@/pages/Pricing/Pricing";
@@ -18,6 +17,7 @@ import { AdminSidebarItems } from "./AdminSideBar";
 import { UserSidebarItems } from "./UserSideBar";
 import { AgentSidebarItems } from "./AgentSideBar";
 import { role } from "@/constant/role";
+import Policy from "@/pages/Policy/Policy";
 
 
 export const router = createBrowserRouter([
@@ -38,8 +38,8 @@ export const router = createBrowserRouter([
         path: "About",
       },
       {
-        Component: Faq,
-        path: "Faq",
+        Component: Policy,
+        path: "policy",
       },
       {
         Component: Contact,

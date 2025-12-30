@@ -63,7 +63,7 @@ const Business = () => {
             <p className="text-sm text-gray-500">
               {blogs[0].date} • {blogs[0].author}
             </p>
-            <h2 className="text-xl font-semibold mt-2 text-pink-600">{blogs[0].title}</h2>
+            <h2 className="text-xl font-semibold mt-2 text-indigo-600">{blogs[0].title}</h2>
             <p className="text-gray-600 mt-2 dark:text-muted-foreground">{blogs[0].description}</p>
           </CardContent>
         </Card>
@@ -80,7 +80,7 @@ const Business = () => {
                 <p className="text-xs text-gray-500">
                   {blog.date} • {blog.author}
                 </p>
-                <h3 className="text-sm font-semibold text-pink-600">{blog.title}</h3>
+                <h3 className="text-sm font-semibold text-indigo-600">{blog.title}</h3>
               </CardContent>
             </Card>
           ))}

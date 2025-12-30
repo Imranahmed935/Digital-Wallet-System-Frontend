@@ -32,7 +32,7 @@ const navigationLinks = [
   { href: "/pricing", label: "Pricing", role: "PUBLIC" },
   { href: "/about", label: "About", role: "PUBLIC" },
   { href: "/contact", label: "Contact", role: "PUBLIC" },
-  { href: "/faq", label: "FAQ", role: "PUBLIC" },
+  { href: "/policy", label: "Policy", role: "PUBLIC" },
 ];
 
 export default function Navbar() {
@@ -63,9 +63,9 @@ export default function Navbar() {
       className="sticky top-0 z-50  px-2 md:px-6 w-full backdrop-blur-2xl"
     >
       <div className="flex h-16 items-center justify-between gap-4 container mx-auto">
-        {/* Left side */}
+    
         <div className="flex items-center gap-2">
-          {/* Mobile menu trigger */}
+     
           <Popover>
             <PopoverTrigger asChild>
               <Button
@@ -73,7 +73,7 @@ export default function Navbar() {
                 variant="ghost"
                 size="icon"
               >
-                {/* Hamburger icon */}
+  
                 <svg
                   className="pointer-events-none"
                   width={16}
@@ -124,7 +124,7 @@ export default function Navbar() {
             </PopoverContent>
           </Popover>
 
-          {/* Logo + Desktop Nav */}
+ 
           <div className="flex items-center gap-6">
             <div className="flex gap-2 items-center">
               <Link to="/" className="text-primary hover:text-primary/90">
@@ -135,7 +135,7 @@ export default function Navbar() {
               </h1>
             </div>
 
-            {/* Desktop navigation menu */}
+    
             <NavigationMenu className="max-md:hidden">
               <NavigationMenuList className="gap-4">
                 {filteredLinks.map((link, index) => (
@@ -161,7 +161,6 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Right side (Auth buttons) */}
         <div className="flex items-center gap-2">
           <div id="theme-toggle">
             <ModeToggle />

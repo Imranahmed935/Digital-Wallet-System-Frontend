@@ -44,8 +44,6 @@ const WhyChooseUs = () => {
   return (
     <section className="relative py-24 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
-
-        {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-20">
           <span className="text-sm font-semibold text-primary uppercase tracking-widest">
             Why Choose Us
@@ -57,11 +55,11 @@ const WhyChooseUs = () => {
           </h2>
 
           <p className="mt-5 text-lg text-gray-600 dark:text-gray-400">
-            Built for speed, security, and simplicity — everything you need in a modern fintech platform.
+            Built for speed, security, and simplicity — everything you need in a
+            modern fintech platform.
           </p>
         </div>
 
-        {/* Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
           {features.map((item, index) => (
             <div
@@ -73,14 +71,12 @@ const WhyChooseUs = () => {
                          dark:shadow-[0_0_60px_rgba(99,102,241,0.35)]
                          transition-transform duration-300 hover:-translate-y-2"
             >
-              {/* Ambient Glow Layer */}
               <div
                 className="pointer-events-none absolute inset-0 rounded-2xl
                            bg-[radial-gradient(circle_at_top_left,rgba(99,102,241,0.25),transparent_60%)]
                            dark:bg-[radial-gradient(circle_at_top_left,rgba(99,102,241,0.45),transparent_60%)]"
               />
 
-              {/* Icon */}
               <div
                 className="relative z-10 flex items-center justify-center w-14 h-14 mb-6 rounded-xl
                            bg-primary/15 text-primary
@@ -90,7 +86,6 @@ const WhyChooseUs = () => {
                 <item.icon size={26} />
               </div>
 
-              {/* Content */}
               <h3 className="relative z-10 text-xl font-semibold text-gray-900 dark:text-white mb-3">
                 {item.title}
               </h3>

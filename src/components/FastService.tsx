@@ -33,7 +33,6 @@ const FastService = () => {
       </h2>
 
       <div className="relative flex justify-center items-center">
-        {/* Phone-shaped container */}
         <div className="relative w-64 md:w-80 lg:w-96 h-[480px] md:h-[600px] lg:h-[700px] rounded-[50px] overflow-hidden border-8 border-gray-200 shadow-xl z-10">
           <img
             src={s6}
@@ -41,8 +40,6 @@ const FastService = () => {
             className="w-full h-full object-cover"
           />
         </div>
-
-        {/* Feature points */}
         {features.map((feature, index) => (
           <div
             key={index}
@@ -53,7 +50,7 @@ const FastService = () => {
               ${feature.position === "right-bottom" ? "bottom-40 right-0" : ""}
             `}
           >
-            <h3 className="font-semibold text-lg mb-1 text-pink-600">{feature.title}</h3>
+            <h3 className="font-semibold text-lg mb-1 text-indigo-600">{feature.title}</h3>
             <p className="text-gray-600 text-sm dark:text-muted-foreground">{feature.description}</p>
             {feature.note && (
               <p className="text-gray-400 text-xs mt-1">{feature.note}</p>
