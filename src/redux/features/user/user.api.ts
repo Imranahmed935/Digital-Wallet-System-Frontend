@@ -17,13 +17,7 @@ export const userApi = baseApi.injectEndpoints({
       }),
       providesTags: ["Wallet"],
     }),
-    // transaction: builder.query({
-    //   query: ({ page = 1, limit = 10 }) => ({
-    //     url: `/transactions/me?page=${page}&limit=${limit}`,
-    //     method: "GET",
-    //   }),
-    //   providesTags: ["transactions"],
-    // }),
+    
      Transactions: builder.query({
       query: ({ page = 1, limit = 10, type, startDate, endDate }) => {
         const params = new URLSearchParams();
