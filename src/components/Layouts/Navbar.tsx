@@ -23,6 +23,7 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { ModeToggle } from "../ModeToggle";
 import { role } from "@/constant/role";
 
+
 const navigationLinks = [
   { href: "/", label: "Home", role: "PUBLIC" },
   { href: "/admin", label: "Dashboard", role: role?.admin },

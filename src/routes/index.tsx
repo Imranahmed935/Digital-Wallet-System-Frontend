@@ -16,8 +16,9 @@ import { createBrowserRouter, Navigate } from "react-router";
 import { AdminSidebarItems } from "./AdminSideBar";
 import { UserSidebarItems } from "./UserSideBar";
 import { AgentSidebarItems } from "./AgentSideBar";
-import { role } from "@/constant/role";
+
 import Policy from "@/pages/Policy/Policy";
+import { role } from "@/constant/role";
 
 
 export const router = createBrowserRouter([
