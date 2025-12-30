@@ -58,26 +58,26 @@ export function Register({ className, ...props }: React.HTMLAttributes<HTMLDivEl
   return (
     <div
       className={cn(
-        "min-h-screen flex flex-col justify-center items-center p-4",
+        "min-h-screen flex flex-col justify-center items-center bg-gradient-to-br from-indigo-50 to-purple-50 p-6",
         className
       )}
       {...props}
     >
-
-      <div className="flex flex-col items-center gap-2 mb-6 text-center">
-        <Logo/>
-        <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
-          Register your zPay account
+      <div className="flex flex-col items-center gap-2 mb-8 text-center">
+        <Logo />
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+          Create your zPay Account
         </h1>
-        <p className="text-sm text-gray-500 dark:text-gray-400">
-          Create a new account to get started
+        <p className="text-sm text-gray-600 dark:text-gray-400 max-w-xs">
+          Fast, secure, and modern fintech experience. Sign up to manage your money effortlessly.
         </p>
       </div>
 
- 
-      <div className="w-full max-w-md bg-white dark:bg-card p-8 space-y-6">
+
+      <div className="w-full max-w-md bg-white dark:bg-card p-8 rounded-2xl shadow-2xl space-y-6 border border-indigo-100 dark:border-gray-700">
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
+   
             <FormField
               control={form.control}
               name="name"
@@ -85,13 +85,16 @@ export function Register({ className, ...props }: React.HTMLAttributes<HTMLDivEl
                 <FormItem>
                   <FormLabel>Name</FormLabel>
                   <FormControl>
-                    <Input placeholder="John Doe" {...field} />
+                    <Input
+                      placeholder="John Doe"
+                      {...field}
+                      className="bg-gray-50 dark:bg-gray-800 border-gray-300 dark:border-gray-700 focus:ring-indigo-500 focus:border-indigo-500"
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
-
 
             <FormField
               control={form.control}
@@ -100,13 +103,19 @@ export function Register({ className, ...props }: React.HTMLAttributes<HTMLDivEl
                 <FormItem>
                   <FormLabel>Email</FormLabel>
                   <FormControl>
-                    <Input placeholder="john@example.com" type="email" {...field} />
+                    <Input
+                      placeholder="john@example.com"
+                      type="email"
+                      {...field}
+                      className="bg-gray-50 dark:bg-gray-800 border-gray-300 dark:border-gray-700 focus:ring-indigo-500 focus:border-indigo-500"
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
 
+       
             <FormField
               control={form.control}
               name="phone"
@@ -114,7 +123,11 @@ export function Register({ className, ...props }: React.HTMLAttributes<HTMLDivEl
                 <FormItem>
                   <FormLabel>Phone</FormLabel>
                   <FormControl>
-                    <Input placeholder="01XXXXXXXXX" {...field} />
+                    <Input
+                      placeholder="01XXXXXXXXX"
+                      {...field}
+                      className="bg-gray-50 dark:bg-gray-800 border-gray-300 dark:border-gray-700 focus:ring-indigo-500 focus:border-indigo-500"
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -127,7 +140,10 @@ export function Register({ className, ...props }: React.HTMLAttributes<HTMLDivEl
                 <FormItem>
                   <FormLabel>Role</FormLabel>
                   <FormControl>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}  
+                    >
                       <SelectTrigger className="w-full">
                         <SelectValue placeholder="Select your role" />
                       </SelectTrigger>
@@ -142,6 +158,7 @@ export function Register({ className, ...props }: React.HTMLAttributes<HTMLDivEl
               )}
             />
 
+      
             <FormField
               control={form.control}
               name="password"
@@ -149,20 +166,22 @@ export function Register({ className, ...props }: React.HTMLAttributes<HTMLDivEl
                 <FormItem>
                   <FormLabel>Password</FormLabel>
                   <FormControl>
-                    <Password {...field} />
+                    <Password {...field} className="bg-gray-50 dark:bg-gray-800 border-gray-300 dark:border-gray-700 focus:ring-indigo-500 focus:border-indigo-500" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
 
-            <Button type="submit" className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 rounded-lg shadow-md">
+            <Button
+              type="submit"
+              className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 rounded-xl shadow-lg transition-transform hover:scale-[1.02]"
+            >
               Register
             </Button>
           </form>
         </Form>
-
-        <p className="text-center text-sm text-gray-500 dark:text-gray-400 mt-4">
+        <p className="text-center text-sm text-gray-500 dark:text-gray-400 mt-2">
           Already have an account?{" "}
           <Link to="/login" className="text-indigo-600 hover:underline font-medium">
             Login

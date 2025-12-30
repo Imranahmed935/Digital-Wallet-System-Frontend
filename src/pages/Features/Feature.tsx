@@ -75,36 +75,40 @@ const ZPayFeatures: FeatureItem[] = [
 
 const Feature = () => {
   return (
-    <section id="feature-section" className="py-20 md:w-7/12 mx-auto px-4">
+    <section
+      id="feature-section"
+      className="py-20 md:w-10/12 mx-auto px-4"
+    >
       <div>
-        {/* Heading */}
         <div className="text-center mb-14">
-          <p className="text-sm font-semibold uppercase text-violet-600">
+          <h2 className="text-3xl font-bold uppercase text-violet-600 tracking-wider">
             Features
-          </p>
-          <h2 className="text-3xl md:text-4xl font-bold">
-            Why Choose <span className="text-violet-600">ZPay</span>?
           </h2>
-          <p className="mt-4 text-gray-600 max-w-2xl mx-auto dark:text-foreground">
+          <p className="mt-4 text-gray-700 max-w-2xl mx-auto dark:text-foreground">
             ZPay brings you the fastest, most secure, and affordable way to
             manage your money. Explore our top features designed to make your
             life easier.
           </p>
         </div>
 
-
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
           {ZPayFeatures.map((feature, idx) => (
             <div
               key={idx}
-              className="bg-white dark:bg-card text-foreground dark:text-card-foreground p-6 border border-violet-600 rounded-xl hover:shadow-lg transition"
-
+              className="bg-white border-indigo-200 dark:bg-card text-foreground dark:text-card-foreground p-6 border rounded-xl
+                          transition-all duration-300 relative overflow-hidden"
             >
-              <div className="flex items-center justify-center w-12 h-12 rounded-full bg-violet-100 mb-4">
+
+              <div className="absolute -top-10 -right-10 w-32 h-32 bg-violet-100 rounded-full opacity-30 blur-2xl animate-pulse"></div>
+
+
+              <div className="flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-r from-violet-400 to-indigo-500 text-white mb-4 shadow-lg">
                 {feature.icon}
               </div>
               <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
-              <p className="text-gray-600 text-sm dark:text-foreground">{feature.description}</p>
+              <p className="text-gray-600 text-sm dark:text-foreground">
+                {feature.description}
+              </p>
             </div>
           ))}
         </div>

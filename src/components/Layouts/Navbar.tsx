@@ -32,11 +32,11 @@ const navigationLinks = [
   { href: "/pricing", label: "Pricing", role: "PUBLIC" },
   { href: "/about", label: "About", role: "PUBLIC" },
   { href: "/contact", label: "Contact", role: "PUBLIC" },
-  { href: "/policy", label: "Policy", role: "PUBLIC" },
+  { href: "/policy", label: "policy", role: "PUBLIC" },
 ];
 
 export default function Navbar() {
-  const { data, isLoading } = useUserInfoQuery(undefined);
+  const { data } = useUserInfoQuery(undefined);
 
   const [logout] = useLogoutMutation();
   const dispatch = useAppDispatch();
@@ -54,16 +54,13 @@ export default function Navbar() {
       (data?.data?.role && link.role === data?.data?.role)
   );
 
-  if (isLoading) {
-    return <h1>loading</h1>;
-  }
+
   return (
     <header
       id="navbar"
       className="sticky top-0 z-50  px-2 md:px-6 w-full backdrop-blur-2xl"
     >
-      <div className="flex h-16 items-center justify-between gap-4 container mx-auto">
-    
+     <div className="flex h-16 items-center justify-between gap-4 container mx-auto">
         <div className="flex items-center gap-2">
      
           <Popover>
@@ -135,7 +132,6 @@ export default function Navbar() {
               </h1>
             </div>
 
-    
             <NavigationMenu className="max-md:hidden">
               <NavigationMenuList className="gap-4">
                 {filteredLinks.map((link, index) => (
@@ -174,7 +170,7 @@ export default function Navbar() {
               Logout
             </Button>
           ) : (
-            <Button asChild size="sm" className="text-sm">
+            <Button asChild size="sm" className="text-sm bg-gradient-to-r from-pink-500 to-purple-600 px-8 py-4 font-semibold text-white shadow-lg shadow-pink-500/40 transition hover:scale-105 hover:shadow-pink-500/60">
               <Link to="/login">Login</Link>
             </Button>
           )}

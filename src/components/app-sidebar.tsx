@@ -21,24 +21,21 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 
   return (
     <Sidebar {...props}>
-      {/* Header with Logo and Dashboard */}
       <SidebarHeader className="flex items-center">
         <Logo />
         <h1 className="text-lg font-semibold text-gray-800 dark:text-foreground">Dashboard</h1>
       </SidebarHeader>
-
-      {/* Sidebar menu */}
       <SidebarContent id="dashboard-stats">
-        {/* Top menu items */}
         <div className="flex flex-col">
           {navItems.map((section) => (
             <SidebarGroup key={section.title}>
               <SidebarGroupContent>
-                <SidebarMenu className="md:ml-17 ml-22">
+                <SidebarMenu className="items-center">
                   {section.items.map((item) => (
                     <SidebarMenuItem key={item.title}>
                       <SidebarMenuButton asChild>
                         <NavLink to={item.url}>{item.title}</NavLink>
+                        
                       </SidebarMenuButton>
                     </SidebarMenuItem>
                   ))}
@@ -47,13 +44,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             </SidebarGroup>
           ))}
         </div>
-
-        {/* Bottom Home link */}
-        <div className=" md:ml-19 ml-24">
+        <div >
           <SidebarMenu>
             <SidebarMenuItem>
               <SidebarMenuButton asChild>
-                <NavLink to="/">Home</NavLink>
+                <NavLink to="/" className="flex justify-center items-center">Home</NavLink>
               </SidebarMenuButton>
             </SidebarMenuItem>
           </SidebarMenu>

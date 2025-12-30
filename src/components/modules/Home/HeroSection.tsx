@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import hero from "../../../assets/send/Send-Money.png";
 
 interface HeroSectionProps {
@@ -36,13 +37,11 @@ export function HeroSection({
 
          
             <div className="flex flex-wrap items-center justify-center gap-5 lg:justify-start">
-              <button className="relative rounded-full bg-gradient-to-r from-pink-500 to-purple-600 px-8 py-4 font-semibold text-white shadow-lg shadow-pink-500/40 transition hover:scale-105 hover:shadow-pink-500/60">
-                Get Started
-              </button>
+              <Link to={`/feature`} className="relative rounded-full bg-gradient-to-r from-pink-500 to-purple-600 px-8 py-4 font-semibold text-white shadow-lg shadow-pink-500/40 transition hover:scale-105 hover:shadow-pink-500/60">
+                Features
+              </Link>
 
-              <button className="rounded-full border border-border bg-background px-8 py-4 font-semibold text-foreground backdrop-blur transition hover:bg-muted">
-                Learn More
-              </button>
+             
             </div>
           </div>
 
