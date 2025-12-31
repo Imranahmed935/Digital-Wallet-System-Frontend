@@ -65,7 +65,7 @@ export function Register({ className, ...props }: React.HTMLAttributes<HTMLDivEl
     >
       <div className="flex flex-col items-center gap-2 mb-8 text-center">
         <Logo />
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+        <h1 className="text-3xl dark:text-accent-foreground font-bold text-gray-900 dark:text-white">
           Create your zPay Account
         </h1>
         <p className="text-sm text-gray-600 dark:text-gray-400 max-w-xs">
