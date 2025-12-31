@@ -112,7 +112,7 @@ zpay/
 
 ## 🌍 Live Demo
 
-* **Frontend (Netlify):** [https://zpay-wallet.netlify.app](https://zpay-wallet.netlify.app)
+* **Frontend (Netlify):** [https://digital-wallet-system-frontend-omega.vercel.app](https://digital-wallet-system-frontend-omega.vercel.app)
 * **Backend (Vercel):** [https://digital-wallet-system-backend-inky.vercel.app](https://digital-wallet-system-backend-inky.vercel.app)
 
 ---
